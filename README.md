@@ -11,7 +11,7 @@ In the context of RNA-sequencing analysis, alternative splicing presents many ch
 This project will examine features of alternative splicing in a set of RNA-sequencing data collected from SCs from males exposed to postnatal trauma (MSUS) at three developmental stages: postnatal day 8 (PND8), PND15 and postnatal week 20 (PNW20). PND8 and PND15 are two key time points of spermatogenesis that correspond to direct exposure to trauma, while the adult time point is many month after exposure. Using these datasets with a higher number of replicates and high-quality, we will investigate changes at the level of genes, transcripts, exons and also looked into differential isoform usage. This project will explore differential exon usage and differential 3’ untranslated regions using a new tool, diffUTR, developed by Dr. Pierre-Luc Germain. This project will also involve an essential component of exploratory data analysis and a proper graphical representation of results.
 For this project, prior experience of working with R is welcome but not essential. Introduction to programming with R, theoretical background on library preparation methods, quality check and quality control of sequenced data, alignment, and differential analysis will be provided during the first week.
 
-**Methods:**
+### Methods
 
 -	Differential exon usage
 -	Differential UTRs analysis
@@ -20,6 +20,7 @@ For this project, prior experience of working with R is welcome but not essentia
 -	GitHub for project organization
 -	The final presentation of the work
 
+### Contributors
 
 | Name | Role | Email | GitHub username|
 | -- | -- | -- | -- |
