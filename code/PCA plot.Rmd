@@ -1,0 +1,55 @@
+---
+title: "PCA"
+output: html_notebook
+---
+
+#PCA plot
+
+
+```{r}
+library(SummarizedExperiment)
+library(ggplot2)
+library(factoextra)
+
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+counts <- assay(se)
+cd <- data.frame(colData(se), stringsAsFactors = F)
+
+pr.out <- prcomp(t(counts))
+#fviz_pca_ind(pr.out, label = "none")
+
+pcaData<-data.frame(cd, pr.out$x)
+p1 <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
+  geom_point()
+
+```
+
+
+#Normalized PCA
+```{R}
+#Normalization
+y <- DGEList(counts=counts, samples=cd, group=cd$Samples_ID)
+y <- calcNormFactors(y)
+norm_counts_pca <- cpm(y)
+cpm2 <- melt(norm_counts_pca)
+head(cpm2)
+#---------------------------------------------------------------------------------------
+
+pr.out2 <- prcomp(t(norm_counts_pca))
+
+pcaData2<-data.frame(cd, pr.out2$x)
+p2 <- ggplot(pcaData2, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
+  geom_point()
+```
+
+#Combined plot
+
+```{R}
+library(patchwork)
+
+p1 + p2
+
+
+```

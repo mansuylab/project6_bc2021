@@ -1,0 +1,72 @@
+---
+title: "Boxplot"
+output: html_notebook
+---
+
+#Boxplot (not normalized)
+
+```{r}
+library(SummarizedExperiment)
+library(GenomicRanges)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(limma)
+library(edgeR)
+
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+counts <- assay(se)
+cd <- data.frame(colData(se), stringsAsFactors = F)
+log.counts = log2(counts + 1)
+
+boxplot(counts,outline=FALSE, las=2)
+boxplot(log.counts,outline=FALSE,las=2)
+
+cpm <- melt(counts)
+cpmm <- melt(log2(counts+1))
+head(cpm)
+
+#raw plot (not normalized)
+ggplot(cpm, aes(x=Var2, y=value))+
+  geom_boxplot()#+
+  #coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))
+
+#log2 plot (not normalized)
+ggplot(cpmm, aes(x=Var2, y=value))+
+  geom_boxplot()
+```
+
+
+#Boxplot normalized
+
+```{r}
+#Normalization
+y <- DGEList(counts=counts, samples=cd, group=cd$Samples_ID)
+y <- calcNormFactors(y)
+norm_counts <- cpm(y, log = TRUE)
+cpm2 <- melt(norm_counts)
+head(cpm2)
+
+##--------------------------------------------------------------------------------------
+
+ggplot(cpm2, aes(x=Var2, y=value))+
+  geom_boxplot()+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
+  facet_wrap(~Var2, scales = "free_x")
+```
+
+#Colored by Stage
+```{R}
+#Merge
+cpm3 <- inner_join(cpm2, cd, by=c("Var2" = "Samples_ID"))
+
+inner_join(x=cpm2, y =cd, by.x="Var2", by.y="Samples_ID")
+
+ggplot(cpm3, aes(x=Var2, y=value, color = Stage))+
+  geom_boxplot()+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))
+```
+
+
