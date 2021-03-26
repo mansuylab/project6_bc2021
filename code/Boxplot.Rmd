@@ -30,12 +30,12 @@ head(cpm)
 
 #raw plot (not normalized)
 ggplot(cpm, aes(x=Var2, y=value))+
-  geom_boxplot()#+
+  geom_boxplot()theme(axis.text.x = element_text(angle = 90)) + labs(y= "Cpm", x = "Samples")#+
   #coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))
 
 #log2 plot (not normalized)
 ggplot(cpmm, aes(x=Var2, y=value))+
-  geom_boxplot()
+  geom_boxplot() + theme(axis.text.x = element_text(angle = 90)) + labs(y= "Cpm", x = "Samples")
 ```
 
 
@@ -53,8 +53,8 @@ head(cpm2)
 
 ggplot(cpm2, aes(x=Var2, y=value))+
   geom_boxplot()+
-  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
-  facet_wrap(~Var2, scales = "free_x")
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+ theme(axis.text.x = element_text(angle = 90)) + labs(y= "Cpm", x = "Samples") #+
+  #facet_wrap(~Var2, scales = "free_x")
 ```
 
 #Colored by Stage
@@ -62,11 +62,10 @@ ggplot(cpm2, aes(x=Var2, y=value))+
 #Merge
 cpm3 <- inner_join(cpm2, cd, by=c("Var2" = "Samples_ID"))
 
-inner_join(x=cpm2, y =cd, by.x="Var2", by.y="Samples_ID")
 
 ggplot(cpm3, aes(x=Var2, y=value, color = Stage))+
-  geom_boxplot()+
-  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))
+  geom_boxplot()+ 
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99))) +theme(axis.text.x = element_text(angle = 90)) + labs(y= "Cpm", x = "Samples")
 ```
 
 

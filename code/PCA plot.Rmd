@@ -10,6 +10,7 @@ output: html_notebook
 library(SummarizedExperiment)
 library(ggplot2)
 library(factoextra)
+library(reshape2)
 
 setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
 se <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
@@ -20,9 +21,18 @@ cd <- data.frame(colData(se), stringsAsFactors = F)
 pr.out <- prcomp(t(counts))
 #fviz_pca_ind(pr.out, label = "none")
 
+
+#Percentage
+percentage <- round(pr.out$sdev / sum(pr.out$sdev) * 100, 2)
+percentage <- paste( colnames(df_out), "(", paste( as.character(percentage), "%", ")", sep="") )
+
 pcaData<-data.frame(cd, pr.out$x)
 p1 <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
-  geom_point()
+  geom_point() + xlab(percentage[1]) + ylab(percentage[2]) +  ggtitle("PCA plot - Unnomalized data") + theme(plot.title = element_text(hjust = 0.5)) + theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+p1
 
 ```
 
@@ -39,9 +49,16 @@ head(cpm2)
 
 pr.out2 <- prcomp(t(norm_counts_pca))
 
+percentage2 <- round(pr.out2$sdev / sum(pr.out2$sdev) * 100, 2)
+percentage2 <- paste( colnames(df_out), "(", paste( as.character(percentage2), "%", ")", sep="") )
+
 pcaData2<-data.frame(cd, pr.out2$x)
 p2 <- ggplot(pcaData2, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
-  geom_point()
+  geom_point() + xlab(percentage2[1]) + ylab(percentage2[2]) + ggtitle("PCA plot - Nomalized data") + theme(plot.title = element_text(hjust = 0.5)) + theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+p2
 ```
 
 #Combined plot
@@ -49,7 +66,7 @@ p2 <- ggplot(pcaData2, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
 ```{R}
 library(patchwork)
 
-p1 + p2
+p1 + p2 + plot_layout(guides = "collect")
 
 
 ```
