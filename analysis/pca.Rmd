@@ -1,9 +1,16 @@
+---
+title: "PCA plots"
+ouotput: html_document
+author: "David Bugliani"
+---
+
 
 ## PCA Plots
 
 ```{r}
 install.packages('patchwork')
 library('patchwork')
+library(workflowr)
 library(gridExtra)
 library(SummarizedExperiment)
 library(ggplot2)
@@ -12,18 +19,48 @@ library(limma)
 library(edgeR)
 library(reshape2)
 
+##Colorcoding for colorblind people
+datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
+cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
+cols <- c(a = cols[1], b = cols[2], c = cols[3])
+
+
+dat <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
+cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
+cols <- c(a = cols[1], b = cols[2], c = cols[3])
+  
+ggplot(dat, aes(x=obj, y=val, color = obj)) + 
+  geom_boxplot() +
+  scale_colour_manual(values = cols)
+
+
+##SE object
 counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
 
 
-get_legend<-function(myggplot){
-  tmp <- ggplot_gtable(ggplot_build(myggplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  return(legend)
+##Function for PCA plotting
+pca_se <- function(se, assay=1, group,...){
+  dat1 <- t(data.frame(assays(se)[[assay]]))
+  dat.pr <- prcomp(dat1)
+  pcaData<-data.frame(data.frame(colData(se), stringsAsFactor = F), dat.pr$x, stringsAsFactor = F)
+  
+  library(ggplot2)
+  
+  pr.out2 <- as.data.frame(dat.pr$x)
+  pr.out2$group <- sapply( strsplit(as.character(row.names(dat1)), "_"), "[[", 1 )
+  percentage <- round(dat.pr$sdev / sum(dat.pr$sdev) * 100, 2)
+  percentage <- paste( colnames(pr.out2), "(", paste( as.character(percentage), "%", ")", sep="") )
+  
+  pca.plot <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=pcaData[,group], ...))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage[1]) + ylab(percentage[2])+
+  ggtitle("PCA plot") + theme(plot.title = element_text(size = 20, hjust=0.5))
+  pca.plot
 }
 
+pca_se(counts_bins[1:1000,], group = 'Group')
 
-
+##-----PCA manually-----
 dat1 <- data.frame(assay(counts_bins))
 cd <- data.frame(colData(counts_bins), stringsAsFactor = F)
 
@@ -38,7 +75,15 @@ dat3 <- t(norm.dge)
 pr.out.norm <- prcomp(dat3)
 pcaData.norm<-data.frame(cd, pr.out.norm$x)
 
-##Legend
+##Legend extraction function
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+
+##obtain Legend
 pca.plot.legend <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
   geom_point()
 legend <- get_legend(pca.plot.legend)
@@ -77,53 +122,54 @@ pca.plot+pca.plot.norm+legend
 
 ```{r}
 library(dplyr)
+library(rcartocolor)
 
+dat1 <- data.frame(assay(counts_bins))
+cd <- data.frame(colData(counts_bins), stringsAsFactor = F)
 
-boxplot(dat1, main = "Counts", outline=FALSE, las=2) ##Raw Counts
+##Raw Counts
+boxplot(dat1, main = "Counts", outline=FALSE, las=2)
 
-
+## log2 counts without normalization
 log.counts <- log(dat1+1)
-boxplot(log.counts, main = "Log2 Counts", outline=FALSE, las=2) ## log2 counts without normalization
+boxplot(log.counts, main = "Log2 Counts", outline=FALSE, las=2) 
 
-
+##normalized log2 counts
 y <- DGEList(counts=dat1, samples=cd, group=cd$Samples_ID)
 y <- calcNormFactors(y)
 
 norm.dge <- cpm(y, log = TRUE)
-boxplot(norm.dge, main = "Boxplot of normalized log counts", las=2, outline=FALSE) ##normalized log2 counts
+boxplot(norm.dge, main = "Boxplot of normalized log counts", las=2, outline=FALSE) 
 
-
+##For color coding
 cpm2 <- melt(norm.dge)
-
-
 a <- inner_join(cpm2, cd, by= c("Var2" = "Samples_ID"))
 
+
+##ggboxplots
 
 box <- ggplot(cpm2, aes(x=Var2, y=value))+
   geom_boxplot()+
   coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
   facet_wrap(~Var2, scales = "free_x")
 
+datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
+cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
 
-box.merge <- ggplot(a, aes(x=Var2, y=value, color = Stage))+
+box.merge <- ggplot(a, aes(x=Var2, y=value, color = Group))+
   geom_boxplot()+
-  theme(axis.text.x = element_text(angle = 90))+
-  ylab("Counts") + xlab("Treatments")+
-  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))
-
-
-box.merge.wrapped <- ggplot(a, aes(x=Var2, y=value, color = Stage))+
-  geom_boxplot()+
+  scale_colour_manual(values = cols)+
+  ggtitle("Normallized log counts")+
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())+
   ylab("Counts") + xlab("Treatments")+
   coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
-  facet_wrap(~Var2, scales = "free_x")
-    
+  facet_wrap(~Stage, scales = "free_x")
 
-
+box.merge
 
 ```
 
-## Extraction and Heatmaps
+## Heatmaps
 
 ```{r}
 library(SEtools)
@@ -135,14 +181,77 @@ CDS <- counts_bins[rowRanges(counts_bins)$type == "CDS",]
 noncoding <- counts_bins[rowRanges(counts_bins)$type == "non-coding",]
 
 
-UTR300 <- sechm(UTR, rownames(UTR)[1:300], name = "UTR", isMult = TRUE,show_heatmap_legend = TRUE, hmcols = c("blue","red") )
-CDS300 <- sechm(CDS, rownames(CDS)[1:300], name = "CDS", isMult = TRUE, show_heatmap_legend = TRUE, hmcols = c("blue","yellow") )
-non300 <- sechm(noncoding, rownames(noncoding)[1:300], name = "non-coding",hmcols = c("blue","green") )
+
+
+UTR300 <- sechm(UTR, rownames(UTR)[1:300], name = "UTR", isMult = TRUE,show_heatmap_legend = TRUE, hmcols = cols )
+CDS300 <- sechm(CDS, rownames(CDS)[1:300], name = "CDS", isMult = TRUE, show_heatmap_legend = TRUE, hmcols = cols )
+non300 <- sechm(noncoding, rownames(noncoding)[1:300], name = "non-coding",hmcols = cols )
 
 UTR300+CDS300+non300
 
 ```
 
+
+
+## Differential analysis
+
+```{r}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("diffUTR")
+BiocManager::install("AnnotationHub")
+library(diffUTR)
+library(SummarizedExperiment)
+library(AnnotationHub)
+library(ggplot2)
+library(ggrepel)
+
+UTR <- counts_bins[rowRanges(counts_bins)$type == "UTR",]
+UTR20 <- UTR[colData(UTR)$Stage == "PNW20",]
+rowRanges(UTR20)
+length(UTR20)
+
+condition <- colData(UTR20)$Group
+rse <- diffSpliceWrapper(UTR20, design = ~condition, excludeTypes = c("CDS","non-coding"))
+rse.ne <- diffSpliceWrapper(UTR20, design = ~condition)
+
+plot1 <- plotTopGenes(rse, diffUTR = TRUE)
+plot2 <- plotTopGenes(rse.ne, diffUTR = TRUE)
+
+plot1+plot2
+
+colData(UTR20)
+
+rse1 <- addNormalizedAssays(rse)
+rse2 <- addNormalizedAssays(rse.ne)
+
+
+deuBinPlot(rse2, "Sos1")
+
+geneBinHeatmap(rse, "Ptger4")
+
+
+UTR <- function(se){
+  library(diffUTR)
+  library(SummarizedExperiment)
+  library(AnnotationHub)
+  library(ggplot2)
+  library(ggrepel)
+  
+  UTR1 <- se[rowRanges(se)$type == "UTR",]
+  UTR20 <- UTR1[colData(UTR1)$Stage == "PNW20",]
+  
+  condition <- colData(UTR20)$Group
+  rse <- diffSpliceWrapper(UTR20, design = ~condition, excludeTypes = c("CDS","non-coding"))
+  
+  plotTopGenes(rse, diffUTR = TRUE)
+}
+
+
+UTR(counts_bins)
+
+
+```
 
 
 
