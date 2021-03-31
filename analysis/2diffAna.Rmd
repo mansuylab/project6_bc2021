@@ -1,0 +1,28 @@
+---
+title: "2diffAna"
+output: html_document
+author: "David Bugliani"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Differential analysis
+
+```{r}
+
+library(diffUTR)
+library(SummarizedExperiment)
+
+counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
+
+pnw20 <- counts_bins[,colData(counts_bins)$Stage == "PNW20"]
+rse <- diffSpliceWrapper(pnw20, design = ~Group, excludeTypes = c("CDS","non-coding"))
+rse.exon <- diffSpliceWrapper(pnw20, design = ~Group)
+
+
+```
+
+
+

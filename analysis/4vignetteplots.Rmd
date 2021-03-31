@@ -1,0 +1,35 @@
+---
+title: "4vignetteplots"
+output: html_document
+author: "David Bugliani"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+library(ggplot2)
+library(diffUTR)
+library(SummarizedExperiment)
+
+plot1 <- plotTopGenes(rse, diffUTR = TRUE)
+plot2 <- plotTopGenes(rse.exon, diffUTR = TRUE)
+
+plot1
+plot2
+
+
+rse1 <- addNormalizedAssays(rse)
+rse2 <- addNormalizedAssays(rse.exon)
+
+
+deuBinPlot(rse1, "Alg10b")
+
+summary(rse)
+
+geneBinHeatmap(rse, "Arg2")
+
+
+```

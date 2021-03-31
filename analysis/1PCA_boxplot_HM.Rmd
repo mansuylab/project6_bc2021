@@ -4,11 +4,15 @@ ouotput: html_document
 author: "David Bugliani"
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 
 ## PCA Plots
 
 ```{r}
-install.packages('patchwork')
+
 library('patchwork')
 library(workflowr)
 library(gridExtra)
@@ -18,27 +22,20 @@ library(factoextra)
 library(limma)
 library(edgeR)
 library(reshape2)
+library(dplyr)
+library(rcartocolor)
+library(SEtools)
 
 ##Colorcoding for colorblind people
 datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
 cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
-cols <- c(a = cols[1], b = cols[2], c = cols[3])
-
-
-dat <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
-cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
-cols <- c(a = cols[1], b = cols[2], c = cols[3])
-  
-ggplot(dat, aes(x=obj, y=val, color = obj)) + 
-  geom_boxplot() +
-  scale_colour_manual(values = cols)
-
+hmcols <- rev(RColorBrewer::brewer.pal(n = 11, name = "RdBu"))
 
 ##SE object
 counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
 
 
-##Function for PCA plotting
+##Function for PCA plotting------
 pca_se <- function(se, assay=1, group,...){
   dat1 <- t(data.frame(assays(se)[[assay]]))
   dat.pr <- prcomp(dat1)
@@ -60,7 +57,7 @@ pca_se <- function(se, assay=1, group,...){
 
 pca_se(counts_bins[1:1000,], group = 'Group')
 
-##-----PCA manually-----
+##PCA manually-----
 dat1 <- data.frame(assay(counts_bins))
 cd <- data.frame(colData(counts_bins), stringsAsFactor = F)
 
@@ -115,14 +112,7 @@ pca.plot.norm <- ggplot(pcaData.norm, aes(x = PC1, y =PC2, shape=Stage, color = 
 pca.plot+pca.plot.norm+legend
 
 
-
-```
-
-## Box plots
-
-```{r}
-library(dplyr)
-library(rcartocolor)
+##Box plots------
 
 dat1 <- data.frame(assay(counts_bins))
 cd <- data.frame(colData(counts_bins), stringsAsFactor = F)
@@ -145,7 +135,6 @@ boxplot(norm.dge, main = "Boxplot of normalized log counts", las=2, outline=FALS
 cpm2 <- melt(norm.dge)
 a <- inner_join(cpm2, cd, by= c("Var2" = "Samples_ID"))
 
-
 ##ggboxplots
 
 box <- ggplot(cpm2, aes(x=Var2, y=value))+
@@ -153,8 +142,6 @@ box <- ggplot(cpm2, aes(x=Var2, y=value))+
   coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
   facet_wrap(~Var2, scales = "free_x")
 
-datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
-cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
 
 box.merge <- ggplot(a, aes(x=Var2, y=value, color = Group))+
   geom_boxplot()+
@@ -167,170 +154,19 @@ box.merge <- ggplot(a, aes(x=Var2, y=value, color = Group))+
 
 box.merge
 
-```
+## Heatmaps first 300 rows
 
-## Heatmaps
 
-```{r}
-library(SEtools)
-
-?sehm
 rowRanges(counts_bins)
 UTR <- counts_bins[rowRanges(counts_bins)$type == "UTR",]
 CDS <- counts_bins[rowRanges(counts_bins)$type == "CDS",]
 noncoding <- counts_bins[rowRanges(counts_bins)$type == "non-coding",]
 
 
-
-
-UTR300 <- sechm(UTR, rownames(UTR)[1:300], name = "UTR", isMult = TRUE,show_heatmap_legend = TRUE, hmcols = cols )
-CDS300 <- sechm(CDS, rownames(CDS)[1:300], name = "CDS", isMult = TRUE, show_heatmap_legend = TRUE, hmcols = cols )
-non300 <- sechm(noncoding, rownames(noncoding)[1:300], name = "non-coding",hmcols = cols )
+UTR300 <- sechm(UTR, rownames(UTR)[1:300], name = "UTR", isMult = TRUE,show_heatmap_legend = TRUE, hmcols = hmcols )
+CDS300 <- sechm(CDS, rownames(CDS)[1:300], name = "CDS", isMult = TRUE, show_heatmap_legend = TRUE, hmcols = hmcols )
+non300 <- sechm(noncoding, rownames(noncoding)[1:300], name = "non-coding",hmcols = hmcols )
 
 UTR300+CDS300+non300
 
 ```
-
-## Differential analysis
-
-```{r}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("diffUTR")
-BiocManager::install("AnnotationHub")
-library(diffUTR)
-library(SummarizedExperiment)
-library(AnnotationHub)
-library(ggplot2)
-library(ggrepel)
-
-counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
-
-UTR <- counts_bins[rowRanges(counts_bins)$type == "UTR",]
-UTR20 <- UTR[colData(UTR)$Stage == "PNW20",]
-rowRanges(UTR20)
-length(UTR20)
-
-condition <- colData(UTR20)$Group
-rse <- diffSpliceWrapper(UTR20, design = ~condition, excludeTypes = c("CDS","non-coding"))
-rse.ne <- diffSpliceWrapper(UTR20, design = ~condition)
-
-plot1 <- plotTopGenes(rse, diffUTR = TRUE)
-plot2 <- plotTopGenes(rse.ne, diffUTR = TRUE)
-
-plot1+plot2
-
-
-
-plot3 <- plotTopGenes(rse, diffUTR = TRUE)+
-  geom_point(show.legend = FALSE)
-
-
-plot3
-
-rse1 <- addNormalizedAssays(rse)
-rse2 <- addNormalizedAssays(rse.ne)
-
-
-deuBinPlot(rse2, "Sos1")
-
-geneBinHeatmap(rse, "Ptger4")
-
-
-UTR <- function(se){
-  library(diffUTR)
-  library(SummarizedExperiment)
-  library(AnnotationHub)
-  library(ggplot2)
-  library(ggrepel)
-  
-  UTR1 <- se[rowRanges(se)$type == "UTR",]
-  UTR20 <- UTR1[colData(UTR1)$Stage == "PNW20",]
-  
-  condition <- colData(UTR20)$Group
-  rse <- diffSpliceWrapper(UTR20, design = ~condition, excludeTypes = c("CDS","non-coding"))
-  
-  plotTopGenes(rse, diffUTR = TRUE)
-}
-
-
-UTR(counts_bins)
-
-
-```
-
-## Volcano plot, mod. Heatmap, MA plot
-
-```{r}
-
-counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
-
-UTR <- counts_bins[rowRanges(counts_bins)$type == "UTR",]
-UTR20 <- UTR[colData(UTR)$Stage == "PNW20",]
-rse <- diffSpliceWrapper(UTR20, design = ~condition, excludeTypes = c("CDS","non-coding"))
-
-rse.frame <- data.frame(rowRanges(rse))
-
-##Volcano plot
-
-library(EnhancedVolcano)
-
-vol.plot <- EnhancedVolcano(rse.frame, 
-                x='coefficient',
-                subtitle = 'Volcano Plot',
-                y='bin.p.value',
-                pCutoff = 0.05,
-                FCcutoff = 1,
-                xlim = c(-3, 3.7),
-                ylim = c(0, -log10(10e-20)),
-                lab = rse.frame$gene_name,
-                title = "PNW20",
-                legendPosition = 'right',
-                legendLabels=c('Not sig.','Log2 FC','p-value',
-                'p-value & Log2 FC'),
-                col = c("black",cols))
-
-vol.plot
-
-##Heatmap
-
-library(SEtools)
-
-sub1 <- rse[rowRanges(rse)$bin.p.value<0.1,]
-
-heat.plot <- sechm(sub1, genes = rownames(sub1), hmcols=cols)
-
-heat.plot
-
-##MA plot
-
-library(ggrepel)
-library(ggpubr)
-
-x <- data.frame('baseMean'=rse.frame$meanLogCPM, 'log2FoldChange'=rse.frame$coefficient, 'padj'=rse.frame$bin.p.value)
-
-MA.plot <- ggmaplot(x, fdr = 0.05, 
-         fc=1.5, size= 0.4,
-         max.overlaps=1000,
-         main = 'MA plot PNW20',
-         label.rectangle = TRUE,
-         alpha = 5,
-         top=3,
-         genenames = rse.vol$gene_name, 
-         palette = cols)
-
-MA.plot
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
