@@ -1,7 +1,10 @@
 ---
-title: "PCA plots"
-ouotput: html_document
-author: "David Bugliani"
+title: "1_PCA_boxplot_HM_DB"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -67,7 +70,11 @@ dat2 <- t(dat1)
 pr.out <- prcomp(dat2)
 pcaData<-data.frame(cd, pr.out$x)
 
+
 ##Normallized
+y <- DGEList(counts=dat1, samples=cd, group=cd$Samples_ID)
+y <- calcNormFactors(y)
+norm.dge <- cpm(y, log = TRUE)
 dat3 <- t(norm.dge)
 pr.out.norm <- prcomp(dat3)
 pcaData.norm<-data.frame(cd, pr.out.norm$x)
@@ -125,10 +132,6 @@ log.counts <- log(dat1+1)
 boxplot(log.counts, main = "Log2 Counts", outline=FALSE, las=2) 
 
 ##normalized log2 counts
-y <- DGEList(counts=dat1, samples=cd, group=cd$Samples_ID)
-y <- calcNormFactors(y)
-
-norm.dge <- cpm(y, log = TRUE)
 boxplot(norm.dge, main = "Boxplot of normalized log counts", las=2, outline=FALSE) 
 
 ##For color coding

@@ -1,17 +1,19 @@
 ---
-title: "2diffAna"
-output: html_document
-author: "David Bugliani"
+title: "4_vignetteplots_DB"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Differential analysis
-
 ```{r}
 
+library(ggplot2)
 library(diffUTR)
 library(SummarizedExperiment)
 
@@ -21,8 +23,22 @@ pnw20 <- counts_bins[,colData(counts_bins)$Stage == "PNW20"]
 rse <- diffSpliceWrapper(pnw20, design = ~Group, excludeTypes = c("CDS","non-coding"))
 rse.exon <- diffSpliceWrapper(pnw20, design = ~Group)
 
+plot1 <- plotTopGenes(rse, diffUTR = TRUE)
+plot2 <- plotTopGenes(rse.exon, diffUTR = TRUE)
+
+plot1
+plot2
+
+
+rse1 <- addNormalizedAssays(rse)
+rse2 <- addNormalizedAssays(rse.exon)
+
+
+plot3 <- deuBinPlot(rse1, "Alg10b")
+
+summary(rse)
+
+plot4 <- geneBinHeatmap(rse, "Arg2")
+
 
 ```
-
-
-

@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>1_PCA_boxplot_HM_DB</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">project6_bc2021</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/mansuylab/project6_bc2021">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">1_PCA_boxplot_HM_DB</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-03-31
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+</p>
+<p>
+<strong>Knit directory:</strong> <code>project6_bc2021/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210323code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210323)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210323code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210323)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Desktop/git/project6_bc2021/data/counts_bins.rds
+</td>
+<td style="text-align:left;">
+data/counts_bins.rds
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeaa1964276a85a72be79064620641d1598251698ftargetblankaa19642a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/aa1964276a85a72be79064620641d1598251698f" target="_blank">aa19642</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeaa1964276a85a72be79064620641d1598251698ftargetblankaa19642a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/aa1964276a85a72be79064620641d1598251698f" target="_blank">aa19642</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rapp.history
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
+    Ignored:    data/.DS_Store
+    Ignored:    data/.Rapp.history
+    Ignored:    data/counts_bins.rds
+
+Untracked files:
+    Untracked:  analysis/1_PCA_boxplot_HM_DB.Rmd
+    Untracked:  analysis/2_diffAna_DB.Rmd
+    Untracked:  analysis/3_Vol_HM_MA_DB.Rmd
+    Untracked:  analysis/4_vignetteplots_DB.Rmd
+
+Unstaged changes:
+    Deleted:    analysis/1PCA_boxplot_HM.Rmd
+    Deleted:    analysis/2diffAna.Rmd
+    Deleted:    analysis/3Vol_HM_MA.Rmd
+    Deleted:    analysis/4vignetteplots.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="pca-plots" class="section level2">
+<h2>PCA Plots</h2>
+<pre class="r"><code>library(&#39;patchwork&#39;)
+library(workflowr)
+library(gridExtra)
+library(SummarizedExperiment)</code></pre>
+<pre><code>Lade nötiges Paket: MatrixGenerics</code></pre>
+<pre><code>Lade nötiges Paket: matrixStats</code></pre>
+<pre><code>
+Attache Paket: &#39;MatrixGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars</code></pre>
+<pre><code>Lade nötiges Paket: GenomicRanges</code></pre>
+<pre><code>Lade nötiges Paket: stats4</code></pre>
+<pre><code>Lade nötiges Paket: BiocGenerics</code></pre>
+<pre><code>Lade nötiges Paket: parallel</code></pre>
+<pre><code>
+Attache Paket: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:parallel&#39;:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>The following object is masked from &#39;package:gridExtra&#39;:
+
+    combine</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which.max, which.min</code></pre>
+<pre><code>Lade nötiges Paket: S4Vectors</code></pre>
+<pre><code>
+Attache Paket: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>Lade nötiges Paket: IRanges</code></pre>
+<pre><code>Lade nötiges Paket: GenomeInfoDb</code></pre>
+<pre><code>Lade nötiges Paket: Biobase</code></pre>
+<pre><code>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
+<pre><code>
+Attache Paket: &#39;Biobase&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:MatrixGenerics&#39;:
+
+    rowMedians</code></pre>
+<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
+
+    anyMissing, rowMedians</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(factoextra)</code></pre>
+<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+<pre class="r"><code>library(limma)</code></pre>
+<pre><code>
+Attache Paket: &#39;limma&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:BiocGenerics&#39;:
+
+    plotMA</code></pre>
+<pre class="r"><code>library(edgeR)
+library(reshape2)
+library(dplyr)</code></pre>
+<pre><code>
+Attache Paket: &#39;dplyr&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:Biobase&#39;:
+
+    combine</code></pre>
+<pre><code>The following objects are masked from &#39;package:GenomicRanges&#39;:
+
+    intersect, setdiff, union</code></pre>
+<pre><code>The following object is masked from &#39;package:GenomeInfoDb&#39;:
+
+    intersect</code></pre>
+<pre><code>The following objects are masked from &#39;package:IRanges&#39;:
+
+    collapse, desc, intersect, setdiff, slice, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:S4Vectors&#39;:
+
+    first, intersect, rename, setdiff, setequal, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:BiocGenerics&#39;:
+
+    combine, intersect, setdiff, union</code></pre>
+<pre><code>The following object is masked from &#39;package:matrixStats&#39;:
+
+    count</code></pre>
+<pre><code>The following object is masked from &#39;package:gridExtra&#39;:
+
+    combine</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(rcartocolor)
+library(SEtools)
+
+##Colorcoding for colorblind people
+datcol &lt;- data.frame(obj = rep(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), 5), val = 1:15)
+cols &lt;- rcartocolor::carto_pal(n = 11, name = &quot;Safe&quot;)
+hmcols &lt;- rev(RColorBrewer::brewer.pal(n = 11, name = &quot;RdBu&quot;))
+
+##SE object
+counts_bins &lt;- readRDS(&quot;~/Desktop/git/project6_bc2021/data/counts_bins.rds&quot;)
+
+
+##Function for PCA plotting------
+pca_se &lt;- function(se, assay=1, group,...){
+  dat1 &lt;- t(data.frame(assays(se)[[assay]]))
+  dat.pr &lt;- prcomp(dat1)
+  pcaData&lt;-data.frame(data.frame(colData(se), stringsAsFactor = F), dat.pr$x, stringsAsFactor = F)
+  
+  library(ggplot2)
+  
+  pr.out2 &lt;- as.data.frame(dat.pr$x)
+  pr.out2$group &lt;- sapply( strsplit(as.character(row.names(dat1)), &quot;_&quot;), &quot;[[&quot;, 1 )
+  percentage &lt;- round(dat.pr$sdev / sum(dat.pr$sdev) * 100, 2)
+  percentage &lt;- paste( colnames(pr.out2), &quot;(&quot;, paste( as.character(percentage), &quot;%&quot;, &quot;)&quot;, sep=&quot;&quot;) )
+  
+  pca.plot &lt;- ggplot(pcaData, aes(x = PC1, y =PC2, shape=pcaData[,group], ...))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage[1]) + ylab(percentage[2])+
+  ggtitle(&quot;PCA plot&quot;) + theme(plot.title = element_text(size = 20, hjust=0.5))
+  pca.plot
+}
+
+pca_se(counts_bins[1:1000,], group = &#39;Group&#39;)</code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>##PCA manually-----
+dat1 &lt;- data.frame(assay(counts_bins))
+cd &lt;- data.frame(colData(counts_bins), stringsAsFactor = F)
+
+
+##RAW
+dat2 &lt;- t(dat1)
+pr.out &lt;- prcomp(dat2)
+pcaData&lt;-data.frame(cd, pr.out$x)
+
+
+##Normallized
+y &lt;- DGEList(counts=dat1, samples=cd, group=cd$Samples_ID)
+y &lt;- calcNormFactors(y)
+norm.dge &lt;- cpm(y, log = TRUE)
+dat3 &lt;- t(norm.dge)
+pr.out.norm &lt;- prcomp(dat3)
+pcaData.norm&lt;-data.frame(cd, pr.out.norm$x)
+
+##Legend extraction function
+get_legend&lt;-function(myggplot){
+  tmp &lt;- ggplot_gtable(ggplot_build(myggplot))
+  leg &lt;- which(sapply(tmp$grobs, function(x) x$name) == &quot;guide-box&quot;)
+  legend &lt;- tmp$grobs[[leg]]
+  return(legend)
+}
+
+##obtain Legend
+pca.plot.legend &lt;- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
+  geom_point()
+legend &lt;- get_legend(pca.plot.legend)
+
+##X&amp;Y Labels
+pr.out2 &lt;- as.data.frame(pr.out$x)
+pr.out2$group &lt;- sapply( strsplit(as.character(row.names(dat2)), &quot;_&quot;), &quot;[[&quot;, 1 )
+
+percentage &lt;- round(pr.out$sdev / sum(pr.out$sdev) * 100, 2)
+percentage &lt;- paste( colnames(pr.out2), &quot;(&quot;, paste( as.character(percentage), &quot;%&quot;, &quot;)&quot;, sep=&quot;&quot;) )
+
+##X&amp;Y Labels norm plot
+pr.out2.norm &lt;- as.data.frame(pr.out.norm$x)
+pr.out2.norm$group &lt;- sapply( strsplit(as.character(row.names(dat3)), &quot;_&quot;), &quot;[[&quot;, 1 )
+
+percentage.norm &lt;- round(pr.out.norm$sdev / sum(pr.out.norm$sdev) * 100, 2)
+percentage.norm &lt;- paste( colnames(pr.out2.norm), &quot;(&quot;, paste( as.character(percentage.norm), &quot;%&quot;, &quot;)&quot;, sep=&quot;&quot;) )
+
+##PLOTS
+require(gridExtra)
+pca.plot &lt;- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage[1]) + ylab(percentage[2])+
+  ggtitle(&quot;PCA plot&quot;) + theme(plot.title = element_text(size = 20, hjust=0.5))
+pca.plot.norm &lt;- ggplot(pcaData.norm, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage.norm[1]) + ylab(percentage.norm[2])+
+  ggtitle(&quot;PCA plot normalized&quot;) + theme(plot.title = element_text(size = 20, hjust=0.5))
+pca.plot+pca.plot.norm+legend</code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>##Box plots------
+
+dat1 &lt;- data.frame(assay(counts_bins))
+cd &lt;- data.frame(colData(counts_bins), stringsAsFactor = F)
+
+##Raw Counts
+boxplot(dat1, main = &quot;Counts&quot;, outline=FALSE, las=2)</code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>## log2 counts without normalization
+log.counts &lt;- log(dat1+1)
+boxplot(log.counts, main = &quot;Log2 Counts&quot;, outline=FALSE, las=2) </code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>##normalized log2 counts
+boxplot(norm.dge, main = &quot;Boxplot of normalized log counts&quot;, las=2, outline=FALSE) </code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>##For color coding
+cpm2 &lt;- melt(norm.dge)
+a &lt;- inner_join(cpm2, cd, by= c(&quot;Var2&quot; = &quot;Samples_ID&quot;))
+
+##ggboxplots
+
+box &lt;- ggplot(cpm2, aes(x=Var2, y=value))+
+  geom_boxplot()+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
+  facet_wrap(~Var2, scales = &quot;free_x&quot;)
+
+
+box.merge &lt;- ggplot(a, aes(x=Var2, y=value, color = Group))+
+  geom_boxplot()+
+  scale_colour_manual(values = cols)+
+  ggtitle(&quot;Normallized log counts&quot;)+
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())+
+  ylab(&quot;Counts&quot;) + xlab(&quot;Treatments&quot;)+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
+  facet_wrap(~Stage, scales = &quot;free_x&quot;)
+
+box.merge</code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-6.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>## Heatmaps first 300 rows
+
+
+rowRanges(counts_bins)</code></pre>
+<pre><code>GRanges object with 866813 ranges and 25 metadata columns:
+                         seqnames              ranges strand |       source
+                            &lt;Rle&gt;           &lt;IRanges&gt;  &lt;Rle&gt; | &lt;FactorList&gt;
+  ENSMUSG00000000001.4.1     chr3 108107280-108109316      * |       HAVANA
+  ENSMUSG00000000001.4.2     chr3 108109317-108109402      * |       HAVANA
+  ENSMUSG00000000001.4.3     chr3 108109403-108109424      * |       HAVANA
+  ENSMUSG00000000001.4.4     chr3 108109425-108109612      * |       HAVANA
+  ENSMUSG00000000001.4.5     chr3 108109613-108111934      * |       HAVANA
+                     ...      ...                 ...    ... .          ...
+  ENSMUSG00000116997.1.1    chr16   30092482-30092882      * |       HAVANA
+  ENSMUSG00000116998.1.1    chr16   56335586-56336277      * |       HAVANA
+  ENSMUSG00000116998.1.2    chr16   56336278-56337050      * |       HAVANA
+  ENSMUSG00000116998.1.3    chr16   56337051-56337378      * |       HAVANA
+  ENSMUSG00000116999.1.1    chr16   56095714-56096839      * |       HAVANA
+                               type         score         phase
+                           &lt;factor&gt; &lt;NumericList&gt; &lt;IntegerList&gt;
+  ENSMUSG00000000001.4.1 UTR                                   
+  ENSMUSG00000000001.4.2 non-coding                            
+  ENSMUSG00000000001.4.3 UTR                                   
+  ENSMUSG00000000001.4.4 CDS                                  2
+  ENSMUSG00000000001.4.5 non-coding                            
+                     ...        ...           ...           ...
+  ENSMUSG00000116997.1.1 non-coding                            
+  ENSMUSG00000116998.1.1 non-coding                            
+  ENSMUSG00000116998.1.2 non-coding                            
+  ENSMUSG00000116998.1.3 non-coding                            
+  ENSMUSG00000116999.1.1 non-coding                            
+                                  gene_name           level
+                            &lt;CharacterList&gt; &lt;CharacterList&gt;
+  ENSMUSG00000000001.4.1              Gnai3               2
+  ENSMUSG00000000001.4.2              Gnai3               2
+  ENSMUSG00000000001.4.3              Gnai3               2
+  ENSMUSG00000000001.4.4              Gnai3               2
+  ENSMUSG00000000001.4.5              Gnai3               2
+                     ...                ...             ...
+  ENSMUSG00000116997.1.1      RP23-396K21.4               2
+  ENSMUSG00000116998.1.1       RP23-176C2.2               2
+  ENSMUSG00000116998.1.2       RP23-176C2.2               2
+  ENSMUSG00000116998.1.3       RP23-176C2.2               2
+  ENSMUSG00000116999.1.1 RP24-299G8.2,Senp7               2
+                                                       havana_gene
+                                                   &lt;CharacterList&gt;
+  ENSMUSG00000000001.4.1                      OTTMUSG00000007197.1
+  ENSMUSG00000000001.4.2                      OTTMUSG00000007197.1
+  ENSMUSG00000000001.4.3                      OTTMUSG00000007197.1
+  ENSMUSG00000000001.4.4                      OTTMUSG00000007197.1
+  ENSMUSG00000000001.4.5                      OTTMUSG00000007197.1
+                     ...                                       ...
+  ENSMUSG00000116997.1.1                      OTTMUSG00000071396.1
+  ENSMUSG00000116998.1.1                      OTTMUSG00000071571.1
+  ENSMUSG00000116998.1.2                      OTTMUSG00000071571.1
+  ENSMUSG00000116998.1.3                      OTTMUSG00000071571.1
+  ENSMUSG00000116999.1.1 OTTMUSG00000056146.3,OTTMUSG00000071569.1
+                           transcript_name transcript_support_level
+                           &lt;CharacterList&gt;          &lt;CharacterList&gt;
+  ENSMUSG00000000001.4.1  RP23-89M15.4-001                        1
+  ENSMUSG00000000001.4.2                                           
+  ENSMUSG00000000001.4.3  RP23-89M15.4-001                        1
+  ENSMUSG00000000001.4.4  RP23-89M15.4-001                        1
+  ENSMUSG00000000001.4.5                                           
+                     ...               ...                      ...
+  ENSMUSG00000116997.1.1 RP23-396K21.4-001                         
+  ENSMUSG00000116998.1.1  RP23-176C2.2-001                         
+  ENSMUSG00000116998.1.2                                           
+  ENSMUSG00000116998.1.3  RP23-176C2.2-001                         
+  ENSMUSG00000116999.1.1  RP24-299G8.2-001                         
+                                      tag    havana_transcript     exon_number
+                          &lt;CharacterList&gt;      &lt;CharacterList&gt; &lt;CharacterList&gt;
+  ENSMUSG00000000001.4.1             CCDS OTTMUST00000016610.1               9
+  ENSMUSG00000000001.4.2                                                      
+  ENSMUSG00000000001.4.3             CCDS OTTMUST00000016610.1               8
+  ENSMUSG00000000001.4.4             CCDS OTTMUST00000016610.1               8
+  ENSMUSG00000000001.4.5                                                      
+                     ...              ...                  ...             ...
+  ENSMUSG00000116997.1.1            basic OTTMUST00000172869.1               1
+  ENSMUSG00000116998.1.1            basic OTTMUST00000173250.1               2
+  ENSMUSG00000116998.1.2                                                      
+  ENSMUSG00000116998.1.3            basic OTTMUST00000173250.1               1
+  ENSMUSG00000116999.1.1 basic,ncRNA_host OTTMUST00000173248.1               1
+                                      exon_id           protein_id
+                              &lt;CharacterList&gt;      &lt;CharacterList&gt;
+  ENSMUSG00000000001.4.1 ENSMUSE00000363317.2 ENSMUSP00000000001.4
+  ENSMUSG00000000001.4.2                                          
+  ENSMUSG00000000001.4.3 ENSMUSE00000404895.1 ENSMUSP00000000001.4
+  ENSMUSG00000000001.4.4 ENSMUSE00000404895.1 ENSMUSP00000000001.4
+  ENSMUSG00000000001.4.5                                          
+                     ...                  ...                  ...
+  ENSMUSG00000116997.1.1 ENSMUSE00001444983.1                     
+  ENSMUSG00000116998.1.1 ENSMUSE00001447768.1                     
+  ENSMUSG00000116998.1.2                                          
+  ENSMUSG00000116998.1.3 ENSMUSE00001445775.1                     
+  ENSMUSG00000116999.1.1 ENSMUSE00001446226.1                     
+                                  ccdsid             ont                   tx
+                         &lt;CharacterList&gt; &lt;CharacterList&gt;             &lt;factor&gt;
+  ENSMUSG00000000001.4.1     CCDS17751.1                 ENSMUST00000000001.4
+  ENSMUSG00000000001.4.2                                                     
+  ENSMUSG00000000001.4.3     CCDS17751.1                 ENSMUST00000000001.4
+  ENSMUSG00000000001.4.4     CCDS17751.1                 ENSMUST00000000001.4
+  ENSMUSG00000000001.4.5                                                     
+                     ...             ...             ...                  ...
+  ENSMUSG00000116997.1.1                     PGO:0000004 ENSMUST00000232024.1
+  ENSMUSG00000116998.1.1                     PGO:0000004 ENSMUST00000231232.1
+  ENSMUSG00000116998.1.2                                                     
+  ENSMUSG00000116998.1.3                     PGO:0000004 ENSMUST00000231232.1
+  ENSMUSG00000116999.1.1                     PGO:0000004 ENSMUST00000232486.1
+                                         gene           tx_biotype
+                                     &lt;factor&gt;         &lt;FactorList&gt;
+  ENSMUSG00000000001.4.1 ENSMUSG00000000001.4       protein_coding
+  ENSMUSG00000000001.4.2 ENSMUSG00000000001.4                     
+  ENSMUSG00000000001.4.3 ENSMUSG00000000001.4       protein_coding
+  ENSMUSG00000000001.4.4 ENSMUSG00000000001.4       protein_coding
+  ENSMUSG00000000001.4.5 ENSMUSG00000000001.4                     
+                     ...                  ...                  ...
+  ENSMUSG00000116997.1.1 ENSMUSG00000116997.1 processed_pseudogene
+  ENSMUSG00000116998.1.1 ENSMUSG00000116998.1 processed_pseudogene
+  ENSMUSG00000116998.1.2 ENSMUSG00000116998.1                     
+  ENSMUSG00000116998.1.3 ENSMUSG00000116998.1 processed_pseudogene
+  ENSMUSG00000116999.1.1 ENSMUSG00000116999.1 processed_pseudogene
+                                                      gene_biotype      bin_id
+                                                      &lt;FactorList&gt; &lt;character&gt;
+  ENSMUSG00000000001.4.1                            protein_coding           1
+  ENSMUSG00000000001.4.2                            protein_coding           2
+  ENSMUSG00000000001.4.3                            protein_coding           3
+  ENSMUSG00000000001.4.4                            protein_coding           4
+  ENSMUSG00000000001.4.5                            protein_coding           5
+                     ...                                       ...         ...
+  ENSMUSG00000116997.1.1                      processed_pseudogene           1
+  ENSMUSG00000116998.1.1                      processed_pseudogene           1
+  ENSMUSG00000116998.1.2                      processed_pseudogene           2
+  ENSMUSG00000116998.1.3                      processed_pseudogene           3
+  ENSMUSG00000116999.1.1 processed_pseudogene,protein_coding                 1
+                         geneAmbiguous meanLogCPM  logWidth meanLogDensity
+                             &lt;logical&gt;  &lt;numeric&gt; &lt;numeric&gt;      &lt;numeric&gt;
+  ENSMUSG00000000001.4.1         FALSE  2.9996879   7.61972    0.010650024
+  ENSMUSG00000000001.4.2         FALSE  0.0373975   4.46591    0.012015109
+  ENSMUSG00000000001.4.3         FALSE  0.8348628   3.13549    0.046166446
+  ENSMUSG00000000001.4.4         FALSE  1.5799897   5.24175    0.026482722
+  ENSMUSG00000000001.4.5         FALSE  0.6805586   7.75061    0.000902612
+                     ...           ...        ...       ...            ...
+  ENSMUSG00000116997.1.1         FALSE 0.00273786   5.99645     0.00249755
+  ENSMUSG00000116998.1.1         FALSE 0.00112318   6.54103     0.00144568
+  ENSMUSG00000116998.1.2         FALSE 0.00106099   6.65157     0.00129422
+  ENSMUSG00000116998.1.3         FALSE 0.00162691   5.79606     0.00304921
+  ENSMUSG00000116999.1.1          TRUE 0.23988531   7.02731     0.00114035
+  -------
+  seqinfo: 22 sequences from an unspecified genome; no seqlengths</code></pre>
+<pre class="r"><code>UTR &lt;- counts_bins[rowRanges(counts_bins)$type == &quot;UTR&quot;,]
+CDS &lt;- counts_bins[rowRanges(counts_bins)$type == &quot;CDS&quot;,]
+noncoding &lt;- counts_bins[rowRanges(counts_bins)$type == &quot;non-coding&quot;,]
+
+
+UTR300 &lt;- sechm(UTR, rownames(UTR)[1:300], name = &quot;UTR&quot;, isMult = TRUE,show_heatmap_legend = TRUE, hmcols = hmcols )</code></pre>
+<pre><code>Using assay logcpm</code></pre>
+<pre class="r"><code>CDS300 &lt;- sechm(CDS, rownames(CDS)[1:300], name = &quot;CDS&quot;, isMult = TRUE, show_heatmap_legend = TRUE, hmcols = hmcols )</code></pre>
+<pre><code>Using assay logcpm</code></pre>
+<pre class="r"><code>non300 &lt;- sechm(noncoding, rownames(noncoding)[1:300], name = &quot;non-coding&quot;,hmcols = hmcols )</code></pre>
+<pre><code>Using assay logcpm</code></pre>
+<pre class="r"><code>UTR300+CDS300+non300</code></pre>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-7.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.4 (2021-02-15)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] de_CH.UTF-8/de_CH.UTF-8/de_CH.UTF-8/C/de_CH.UTF-8/de_CH.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] SEtools_1.5.1               rcartocolor_2.0.0          
+ [3] dplyr_1.0.5                 reshape2_1.4.4             
+ [5] edgeR_3.32.1                limma_3.46.0               
+ [7] factoextra_1.0.7            ggplot2_3.3.3              
+ [9] SummarizedExperiment_1.20.0 Biobase_2.50.0             
+[11] GenomicRanges_1.42.0        GenomeInfoDb_1.26.4        
+[13] IRanges_2.24.1              S4Vectors_0.28.1           
+[15] BiocGenerics_0.36.0         MatrixGenerics_1.2.1       
+[17] matrixStats_0.58.0          gridExtra_2.3              
+[19] patchwork_1.1.1             workflowr_1.6.2            
+
+loaded via a namespace (and not attached):
+  [1] Rtsne_0.15             colorspace_2.0-0       rjson_0.2.20          
+  [4] ellipsis_0.3.1         rprojroot_2.0.2        circlize_0.4.12       
+  [7] XVector_0.30.0         GlobalOptions_0.1.2    fs_1.5.0              
+ [10] clue_0.3-58            farver_2.1.0           ggrepel_0.9.1         
+ [13] bit64_4.0.5            AnnotationDbi_1.52.0   fansi_0.4.2           
+ [16] codetools_0.2-18       splines_4.0.4          cachem_1.0.4          
+ [19] geneplotter_1.68.0     knitr_1.31             jsonlite_1.7.2        
+ [22] Cairo_1.5-12.2         annotate_1.68.0        cluster_2.1.1         
+ [25] png_0.1-7              compiler_4.0.4         httr_1.4.2            
+ [28] assertthat_0.2.1       Matrix_1.3-2           fastmap_1.1.0         
+ [31] later_1.1.0.1          htmltools_0.5.1.1      tools_4.0.4           
+ [34] gtable_0.3.0           glue_1.4.2             GenomeInfoDbData_1.2.4
+ [37] V8_3.4.0               Rcpp_1.0.6             jquerylib_0.1.3       
+ [40] vctrs_0.3.7            nlme_3.1-152           iterators_1.0.13      
+ [43] xfun_0.22              stringr_1.4.0          openxlsx_4.2.3        
+ [46] lifecycle_1.0.0        XML_3.99-0.6           zlibbioc_1.36.0       
+ [49] scales_1.1.1           TSP_1.1-10             promises_1.2.0.1      
+ [52] RColorBrewer_1.1-2     ComplexHeatmap_2.6.2   yaml_2.2.1            
+ [55] curl_4.3               memoise_2.0.0          sass_0.3.1            
+ [58] stringi_1.5.3          RSQLite_2.2.5          randomcoloR_1.1.0.1   
+ [61] highr_0.8              genefilter_1.72.1      foreach_1.5.1         
+ [64] seriation_1.2-9        zip_2.1.1              BiocParallel_1.24.1   
+ [67] shape_1.4.5            rlang_0.4.10           pkgconfig_2.0.3       
+ [70] bitops_1.0-6           evaluate_0.14          lattice_0.20-41       
+ [73] purrr_0.3.4            labeling_0.4.2         bit_4.0.4             
+ [76] tidyselect_1.1.0       plyr_1.8.6             magrittr_2.0.1        
+ [79] DESeq2_1.30.1          R6_2.5.0               generics_0.1.0        
+ [82] DelayedArray_0.16.3    DBI_1.1.1              mgcv_1.8-34           
+ [85] pillar_1.5.1           withr_2.4.1            survival_3.2-10       
+ [88] RCurl_1.98-1.3         tibble_3.1.0           crayon_1.4.1          
+ [91] utf8_1.2.1             rmarkdown_2.7          GetoptLong_1.0.5      
+ [94] locfit_1.5-9.4         grid_4.0.4             sva_3.38.0            
+ [97] data.table_1.14.0      blob_1.2.1             git2r_0.28.0          
+[100] digest_0.6.27          xtable_1.8-4           httpuv_1.5.5          
+[103] munsell_0.5.0          registry_0.5-1         bslib_0.2.4           </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
