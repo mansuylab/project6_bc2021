@@ -1,6 +1,10 @@
 ---
-title: "Preprocessed Data"
-output: html_notebook
+title: "Preprocessed Plot"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
 ---
 
 
@@ -16,6 +20,7 @@ library(limma)
 library(edgeR)
 library(GenomicRanges)
 library(SEtools)
+library(dplyr)
 ```
 
 #Working directories and Data
@@ -208,9 +213,9 @@ ggplot(cpm3, aes(x=Var2, y=value, fill = Group))+
 #Subsetting
 rowranges <- data.frame(rowRanges(se_apa))
 utr <- na.omit(rowranges$type == "UTR")
-seUTR <- se[utr,]
+seUTR <- se_apa[utr,]
 seUTRassay <- assay(seUTR)
 
 #Plot
-sechm(seUTR, genes=rownames(assay(seUTR)))
+sechm(seUTR, genes=rownames(assay(seUTR))[1:10])
 ```
