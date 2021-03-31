@@ -1,0 +1,63 @@
+---
+title: "Vignette Plot"
+output: html_notebook
+---
+
+#library
+```{r}
+library(diffUTR)
+library(SummarizedExperiment)
+library(GenomicRanges)
+library(dplyr)
+library(ggplot2)
+```
+
+
+#Top genes
+```{R}
+#Exon
+plotTopGenes(sePND8_exon)
+
+#UTR
+sePND8_utr <- geneLevelStats(sePND8_utr, includeTypes="3UTR")
+plotTopGenes(sePND8_utr)
+
+```
+
+#Gene profiler
+```{R}
+#Exon
+sePND8_exon <- addNormalizedAssays(sePND8_exon)
+deuBinPlot(sePND8_exon,"Jund")
+
+deuBinPlot(sePND8_exon,"Jund", type="condition", colour="condition")
+
+deuBinPlot(sePND8_exon,"Jund", type="sample", colour="Group")
+
+deuBinPlot(sePND8_exon,"Jund",type="Group",colour="Group") + 
+  guides(colour = guide_legend(override.aes = list(size = 3))) +
+  scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#UTR
+sePND8_exon <- addNormalizedAssays(sePND8_exon)
+deuBinPlot(sePND8_utr,"Jund")
+
+deuBinPlot(sePND8_utr,"Jund", type="Group", colour="Group")
+
+deuBinPlot(sePND8_utr,"Jund", type="sample", colour="condition")
+
+deuBinPlot(sePND8_utr,"Jund",type="condition",colour="condition") + 
+  guides(colour = guide_legend(override.aes = list(size = 3))) +
+  scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+```
+
+#Heatmap
+```{R}
+#Exon
+geneBinHeatmap(sePND8_exon, "Smg6")
+
+#UTR
+geneBinHeatmap(sePND8_utr, "Smg6")
+```
+

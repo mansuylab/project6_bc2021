@@ -1,0 +1,50 @@
+---
+title: "Differential Analysis"
+output: html_notebook
+---
+
+
+#Library
+```{r}
+library(diffUTR)
+library(SummarizedExperiment)
+library(GenomicRanges)
+library(dplyr)
+```
+
+#working directories and data
+```{R}
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+se_apa <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+```
+
+#subset PND8
+```{R}
+cd <- data.frame(colData(se), stringsAsFactors = F)
+pnd8 <- cd$Stage == "PND8"
+sePND8 <- se[,pnd8]
+```
+
+#Exon analysis
+```{R}
+sePND8_exon <- sePND8
+sePND8_exon <- diffSpliceWrapper(sePND8_exon, design = ~Batch+Group)
+head(rowData(sePND8_exon))
+
+perGene <- metadata(sePND8_exon)$geneLevel
+head(perGene)
+```
+
+#UTR Analysis
+```{R}
+#subset
+cd2 <- data.frame(colData(se_apa))
+pnd8_2 <- cd2$Stage == "PND8"
+sePND8UTR <- se_apa[,pnd8_2]
+
+#analysis
+sePND8_utr <- diffSpliceWrapper(sePND8UTR, design = ~Batch+Group, 
+                excludeTypes = c("CDS","non-coding"))
+```
