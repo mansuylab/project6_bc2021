@@ -1,0 +1,95 @@
+---
+title: "3_Vol_HM_MA_DB"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Volcano plot, mod. Heatmap, MA plot
+
+```{r}
+
+library(EnhancedVolcano)
+library(SummarizedExperiment)
+library(workflowr)
+library(gridExtra)
+library(diffUTR)
+library(ggplot2)
+library(factoextra)
+library(limma)
+library(edgeR)
+library(reshape2)
+library(dplyr)
+library(rcartocolor)
+library(SEtools)
+library(ggrepel)
+library(ggpubr)
+
+counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
+
+datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
+cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
+hmcols <- rev(RColorBrewer::brewer.pal(n = 11, name = "RdBu"))
+
+pnw20 <- counts_bins[,colData(counts_bins)$Stage == "PNW20"]
+rse <- diffSpliceWrapper(pnw20, design = ~Group, excludeTypes = c("CDS","non-coding"))
+rse.exon <- diffSpliceWrapper(pnw20, design = ~Group)
+
+##Volcano plot
+
+rse.frame <- data.frame(rowRanges(rse))
+
+vol.plot <- EnhancedVolcano(rse.frame, 
+                x='coefficient',
+                subtitle = 'Volcano Plot',
+                y='bin.p.value',
+                pCutoff = 0.05,
+                FCcutoff = 1,
+                xlim = c(-3, 3.7),
+                ylim = c(0, -log10(10e-20)),
+                lab = rse.frame$gene_name,
+                title = "PNW20",
+                legendPosition = 'right',
+                legendLabels=c('Not sig.','Log2 FC','p-value',
+                'p-value & Log2 FC'),
+                col = c("black",cols))
+
+vol.plot
+
+##Heatmap
+
+sub1 <- rse[rowRanges(rse)$bin.FDR<0.2,]
+
+heat.plot <- sechm(sub1, genes = rownames(sub1), hmcols=hmcols, do.scale = TRUE, gaps_at = "Group", show_rownames = FALSE)
+
+heat.plot
+
+##MA plot
+
+x <- data.frame('baseMean'=rse.frame$meanLogCPM, 'log2FoldChange'=rse.frame$coefficient, 'padj'=rse.frame$bin.FDR)
+
+MA.plot <- ggmaplot(x, fdr = 0.05, 
+         fc=1.5, size= 0.4,
+         max.overlaps=1000,
+         main = 'MA plot PNW20',
+         label.rectangle = TRUE,
+         alpha = 5,
+         top=5,
+         genenames = rse.frame$gene_name, 
+         palette = cols)
+
+MA.plot
+
+##Histogram
+
+histo <- hist(rowRanges(rse)$bin.p.value)
+histo.exon <- hist(rowRanges(rse.exon)$bin.p.value)
+
+
+```

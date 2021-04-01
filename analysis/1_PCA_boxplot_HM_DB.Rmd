@@ -1,0 +1,175 @@
+---
+title: "1_PCA_boxplot_HM_DB"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## PCA Plots
+
+```{r}
+
+library('patchwork')
+library(workflowr)
+library(gridExtra)
+library(SummarizedExperiment)
+library(ggplot2)
+library(factoextra)
+library(limma)
+library(edgeR)
+library(reshape2)
+library(dplyr)
+library(rcartocolor)
+library(SEtools)
+
+##Colorcoding for colorblind people
+datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
+cols <- rcartocolor::carto_pal(n = 11, name = "Safe")
+hmcols <- rev(RColorBrewer::brewer.pal(n = 11, name = "RdBu"))
+
+##SE object
+counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
+
+
+##Function for PCA plotting------
+pca_se <- function(se, assay=1, group,...){
+  dat1 <- t(data.frame(assays(se)[[assay]]))
+  dat.pr <- prcomp(dat1)
+  pcaData<-data.frame(data.frame(colData(se), stringsAsFactor = F), dat.pr$x, stringsAsFactor = F)
+  
+  library(ggplot2)
+  
+  pr.out2 <- as.data.frame(dat.pr$x)
+  pr.out2$group <- sapply( strsplit(as.character(row.names(dat1)), "_"), "[[", 1 )
+  percentage <- round(dat.pr$sdev / sum(dat.pr$sdev) * 100, 2)
+  percentage <- paste( colnames(pr.out2), "(", paste( as.character(percentage), "%", ")", sep="") )
+  
+  pca.plot <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=pcaData[,group], ...))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage[1]) + ylab(percentage[2])+
+  ggtitle("PCA plot") + theme(plot.title = element_text(size = 20, hjust=0.5))
+  pca.plot
+}
+
+pca_se(counts_bins[1:1000,], group = 'Group')
+
+##PCA manually-----
+dat1 <- data.frame(assay(counts_bins))
+cd <- data.frame(colData(counts_bins), stringsAsFactor = F)
+
+
+##RAW
+dat2 <- t(dat1)
+pr.out <- prcomp(dat2)
+pcaData<-data.frame(cd, pr.out$x)
+
+
+##Normallized
+y <- DGEList(counts=dat1, samples=cd, group=cd$Samples_ID)
+y <- calcNormFactors(y)
+norm.dge <- cpm(y, log = TRUE)
+dat3 <- t(norm.dge)
+pr.out.norm <- prcomp(dat3)
+pcaData.norm<-data.frame(cd, pr.out.norm$x)
+
+##Legend extraction function
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+
+##obtain Legend
+pca.plot.legend <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
+  geom_point()
+legend <- get_legend(pca.plot.legend)
+
+##X&Y Labels
+pr.out2 <- as.data.frame(pr.out$x)
+pr.out2$group <- sapply( strsplit(as.character(row.names(dat2)), "_"), "[[", 1 )
+
+percentage <- round(pr.out$sdev / sum(pr.out$sdev) * 100, 2)
+percentage <- paste( colnames(pr.out2), "(", paste( as.character(percentage), "%", ")", sep="") )
+
+##X&Y Labels norm plot
+pr.out2.norm <- as.data.frame(pr.out.norm$x)
+pr.out2.norm$group <- sapply( strsplit(as.character(row.names(dat3)), "_"), "[[", 1 )
+
+percentage.norm <- round(pr.out.norm$sdev / sum(pr.out.norm$sdev) * 100, 2)
+percentage.norm <- paste( colnames(pr.out2.norm), "(", paste( as.character(percentage.norm), "%", ")", sep="") )
+
+##PLOTS
+require(gridExtra)
+pca.plot <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage[1]) + ylab(percentage[2])+
+  ggtitle("PCA plot") + theme(plot.title = element_text(size = 20, hjust=0.5))
+pca.plot.norm <- ggplot(pcaData.norm, aes(x = PC1, y =PC2, shape=Stage, color = Group))+
+  geom_point(show.legend = FALSE)+
+  xlab(percentage.norm[1]) + ylab(percentage.norm[2])+
+  ggtitle("PCA plot normalized") + theme(plot.title = element_text(size = 20, hjust=0.5))
+pca.plot+pca.plot.norm+legend
+
+
+##Box plots------
+
+dat1 <- data.frame(assay(counts_bins))
+cd <- data.frame(colData(counts_bins), stringsAsFactor = F)
+
+##Raw Counts
+boxplot(dat1, main = "Counts", outline=FALSE, las=2)
+
+## log2 counts without normalization
+log.counts <- log(dat1+1)
+boxplot(log.counts, main = "Log2 Counts", outline=FALSE, las=2) 
+
+##normalized log2 counts
+boxplot(norm.dge, main = "Boxplot of normalized log counts", las=2, outline=FALSE) 
+
+##For color coding
+cpm2 <- melt(norm.dge)
+a <- inner_join(cpm2, cd, by= c("Var2" = "Samples_ID"))
+
+##ggboxplots
+
+box <- ggplot(cpm2, aes(x=Var2, y=value))+
+  geom_boxplot()+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
+  facet_wrap(~Var2, scales = "free_x")
+
+
+box.merge <- ggplot(a, aes(x=Var2, y=value, color = Group))+
+  geom_boxplot()+
+  scale_colour_manual(values = cols)+
+  ggtitle("Normallized log counts")+
+  theme(axis.text.x=element_blank(), axis.ticks.x=element_blank())+
+  ylab("Counts") + xlab("Treatments")+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99)))+
+  facet_wrap(~Stage, scales = "free_x")
+
+box.merge
+
+## Heatmaps first 300 rows
+
+
+rowRanges(counts_bins)
+UTR <- counts_bins[rowRanges(counts_bins)$type == "UTR",]
+CDS <- counts_bins[rowRanges(counts_bins)$type == "CDS",]
+noncoding <- counts_bins[rowRanges(counts_bins)$type == "non-coding",]
+
+
+UTR300 <- sechm(UTR, rownames(UTR)[1:300], name = "UTR", isMult = TRUE,show_heatmap_legend = TRUE, hmcols = hmcols )
+CDS300 <- sechm(CDS, rownames(CDS)[1:300], name = "CDS", isMult = TRUE, show_heatmap_legend = TRUE, hmcols = hmcols )
+non300 <- sechm(noncoding, rownames(noncoding)[1:300], name = "non-coding",hmcols = hmcols )
+
+UTR300+CDS300+non300
+
+```
