@@ -1,0 +1,85 @@
+---
+title: "Vignette Plot"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+#library
+```{r}
+library(diffUTR)
+library(SummarizedExperiment)
+library(GenomicRanges)
+library(dplyr)
+library(ggplot2)
+```
+
+```{R}
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+cd <- data.frame(colData(se), stringsAsFactors = F)
+pnd8 <- cd$Stage == "PND8"
+sePND8 <- se[,pnd8]
+sePND8_exon <- sePND8
+sePND8_exon <- diffSpliceWrapper(sePND8_exon, design = ~Batch+Group)
+
+se_apa <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+cd2 <- data.frame(colData(se_apa))
+pnd8_2 <- cd2$Stage == "PND8"
+sePND8UTR <- se_apa[,pnd8_2]
+sePND8_utr <- diffSpliceWrapper(sePND8UTR, design = ~Batch+Group, 
+                excludeTypes = c("CDS","non-coding"))
+```
+
+#Top genes
+```{R}
+#Exon
+plotTopGenes(sePND8_exon)
+
+#UTR
+sePND8_utr <- geneLevelStats(sePND8_utr, includeTypes="3UTR")
+plotTopGenes(sePND8_utr)
+
+```
+
+#Gene profiler
+```{R}
+#Exon
+sePND8_exon <- addNormalizedAssays(sePND8_exon)
+deuBinPlot(sePND8_exon,"Jund")
+
+#deuBinPlot(sePND8_exon,"Jund", type="Group", colour="Group")
+
+deuBinPlot(sePND8_exon,"Jund", type="sample", colour="Group")
+
+#deuBinPlot(sePND8_exon,"Jund",type="Group",colour="Group") + 
+  #guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#UTR
+sePND8_exon <- addNormalizedAssays(sePND8_exon)
+deuBinPlot(sePND8_utr,"Jund")
+
+#deuBinPlot(sePND8_utr,"Jund", type="Group", colour="Group")
+
+deuBinPlot(sePND8_utr,"Jund", type="sample", colour="Group")
+
+#deuBinPlot(sePND8_utr,"Jund",type="condition",colour="condition") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+```
+
+#Heatmap
+```{R}
+#Exon
+geneBinHeatmap(sePND8_exon, "Smg6")
+
+#UTR
+geneBinHeatmap(sePND8_utr, "Smg6")
+```
+

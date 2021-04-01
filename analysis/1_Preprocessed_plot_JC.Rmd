@@ -1,0 +1,221 @@
+---
+title: "Preprocessed Plot"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+#Library
+```{r}
+library(SummarizedExperiment)
+library(ggplot2)
+library(factoextra)
+library(reshape2)
+library(patchwork)
+library(rcartocolor)
+library(limma)
+library(edgeR)
+library(GenomicRanges)
+library(SEtools)
+library(dplyr)
+```
+
+#Working directories and Data
+```{R}
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se_apa <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+```
+
+#Colorblind color preparation
+```{R}
+cols <- carto_pal(n = 9, "Safe")
+colStage <- c(PND8 = cols[1], PND15 = cols[3], PND14 = cols[2], PNW8 = cols[4], PNW20 = cols[5], PND7 = cols[6])
+
+colgroup <- c(cols[1],cols[2])
+colgroup <- c(Control = cols[1], MSUS = cols[2])
+```
+
+#PCA Plot - Unnormalized
+```{R}
+
+#data preparation
+counts <- assay(se_apa)
+cd <- data.frame(colData(se_apa), stringsAsFactors = F)
+
+#pca analysis
+pr.out <- prcomp(t(counts))
+pcaData<-data.frame(cd, pr.out$x)
+
+#Percentage
+percentage <- round(pr.out$sdev / sum(pr.out$sdev) * 100, 2)
+percentage <- paste( colnames(pr.out$x), "(", paste( as.character(percentage), "%", ")", sep=""))
+
+
+#Plot
+p1 <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
+  geom_point() + xlab(percentage[1]) + ylab(percentage[2]) +
+  scale_color_manual(values=colStage) +
+  ggtitle("PCA plot - Unnomalized data") +
+  theme(plot.title = element_text(hjust = 0.5)) + theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+p1
+
+```
+
+#PCA plot - Normalized
+```{R}
+#Normalization
+y <- DGEList(counts=counts, samples=cd, group=cd$Samples_ID)
+y <- calcNormFactors(y)
+norm_counts_pca <- cpm(y)
+cpm2 <- melt(norm_counts_pca)
+
+#pca analysis
+pr.out2 <- prcomp(t(norm_counts_pca))
+pcaData2<-data.frame(cd, pr.out2$x)
+
+#percentage
+percentage2 <- round(pr.out2$sdev / sum(pr.out2$sdev) * 100, 2)
+percentage2 <- paste( colnames(pr.out2$x), "(", paste( as.character(percentage2), "%", ")", sep=""))
+
+#Plot
+p2 <- ggplot(pcaData2, aes(x = PC1, y =PC2, shape=Group, color = Stage))+
+  #geom_point(colour = colStage)
+  scale_color_manual(values=colStage) +
+  geom_point() + xlab(percentage2[1]) + ylab(percentage2[2]) + 
+  ggtitle("PCA plot - Nomalized data") +
+  theme(plot.title = element_text(hjust = 0.5)) +   theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank()) 
+  
+p2
+```
+
+#Combined Plot
+```{R}
+p1 + p2 + plot_layout(guides = "collect")
+
+```
+
+
+#PCA function
+```{R}
+pca_se <- function(se, assay=1, group, ...){
+  counts <- t(data.frame(assays(se)[[assay]]))
+  pr.se <- prcomp(counts)
+  pcaData<-data.frame(data.frame(colData(se), stringsAsFactors = F), pr.se$x,             stringsAsFactors = F)
+  
+  
+  df_out <- as.data.frame(pr.se$x)
+  percentage <- round(pr.se$sdev / sum(pr.se$sdev) * 100, 2)
+  percentage <- paste( colnames(df_out), "(", paste( as.character(percentage), "%",      ")",   sep="") )
+  
+  
+  pca_plot <- ggplot(pcaData, aes(x = PC1, y =PC2, shape=group, color = ...))+
+  geom_point() + xlab(percentage[1]) + ylab(percentage[2]) +  ggtitle("PCA plot") +      theme(plot.title = element_text(hjust = 0.5)) + theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())
+  pca_plot
+  
+}
+
+pca_se(se=se_apa, assay = 1, group=cd$Group, pcaData$Stage)
+```
+
+#Boxplot (not normalized)
+```{R}
+
+#data preparation
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se_apa <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+counts <- assay(se_apa)
+cd <- data.frame(colData(se_apa), stringsAsFactors = F)
+log.counts = log2(counts + 1)
+
+#first plot
+boxplot(counts,outline=FALSE, las=2)
+boxplot(log.counts,outline=FALSE,las=2)
+
+#data transformation
+cpm <- melt(counts)
+cpm_log <- melt(log2(counts+1))
+
+#raw plot (not normalized)
+ggplot(cpm, aes(x=Var2, y=value))+
+  geom_boxplot() + theme(axis.text.x = element_text(angle = 90)) +
+  labs(y= "Cpm", x = "Samples")
+
+#log2 plot (not normalized)
+ggplot(cpm_log, aes(x=Var2, y=value))+
+  geom_boxplot() + theme(axis.text.x = element_text(angle = 90)) +
+  labs(y= "Cpm", x = "Samples")
+```
+
+#Boxplot normalized
+```{r}
+#Normalization
+y <- DGEList(counts=counts, samples=cd, group=cd$Samples_ID)
+y <- calcNormFactors(y)
+
+norm_counts_log <- cpm(y, log = TRUE)
+log_cpm <- melt(norm_counts_log)
+head(log_cpm)
+
+#Plot log2 normalized
+ggplot(log_cpm, aes(x=Var2, y=value))+
+  geom_boxplot()+
+  
+  coord_cartesian(ylim = quantile(log_cpm$value, c(0.01, 0.99)))+ 
+  theme(axis.text.x = element_text(angle = 90)) + labs(y= "Cpm", x = "Samples")
+```
+
+#Colored by Group
+````{R}
+#Merge
+cpm3 <- inner_join(log_cpm, cd, by=c("Var2" = "Samples_ID"))
+
+#Plot
+ggplot(cpm3, aes(x=Var2, y=value, fill = Group))+
+  geom_boxplot()+ 
+  scale_fill_manual(values=colgroup)+
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99))) +
+  theme(axis.text.x = element_text(angle = 90)) + labs(y= "Cpm", x = "Samples")
+
+```
+
+#Facet
+```{R}
+
+ggplot(cpm3, aes(x=Var2, y=value, fill = Group))+
+  geom_boxplot()+ scale_fill_manual(values=colgroup) +
+  coord_cartesian(ylim = quantile(cpm2$value, c(0.01, 0.99))) +                   
+  facet_wrap(~Stage, scales = "free_x") +
+  theme(
+  axis.text.x = element_blank(),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank()) +
+  ggtitle("Boxplot very nice") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(y="Cpm", x= element_blank()) 
+
+```
+
+#UTR Heatmap
+```{R}
+#Subsetting
+rowranges <- data.frame(rowRanges(se_apa))
+utr <- na.omit(rowranges$type == "UTR")
+seUTR <- se_apa[utr,]
+seUTRassay <- assay(seUTR)
+
+#Plot
+sechm(seUTR, genes=rownames(assay(seUTR))[1:10])
+```
