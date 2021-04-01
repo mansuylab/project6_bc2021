@@ -1,0 +1,131 @@
+---
+title: "Processed Plot"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+#Library
+```{r}
+library(diffUTR)
+library(SummarizedExperiment)
+library(GenomicRanges)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(limma)
+library(edgeR)
+library(ensembldb)
+library(ggpubr)
+library(SEtools)
+library(EnhancedVolcano)
+```
+
+#Working directories and data
+```{R}
+setwd("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021")
+se <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+cd <- data.frame(colData(se), stringsAsFactors = F)
+pnd8 <- cd$Stage == "PND8"
+sePND8 <- se[,pnd8]
+sePND8_exon <- sePND8
+sePND8_exon <- diffSpliceWrapper(sePND8_exon, design = ~Batch+Group)
+
+se_apa <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. Epigenetic mechanism/Project/project6_bc2021/data/counts_bins_apa.rds")
+
+cd2 <- data.frame(colData(se_apa))
+pnd8_2 <- cd2$Stage == "PND8"
+sePND8UTR <- se_apa[,pnd8_2]
+sePND8_utr <- diffSpliceWrapper(sePND8UTR, design = ~Batch+Group, 
+                excludeTypes = c("CDS","non-coding"))
+
+```
+
+#P-Value Histogram
+```{R}
+hist.plot_exon <- hist(rowRanges(sePND8_exon)$bin.p.value)
+
+hist.plot_utr <- hist(rowRanges(sePND8_utr)$bin.p.value)
+```
+
+#MA Plot
+```{R}
+#Exon
+
+#data preparation
+maData <- data.frame(baseMean = rowData(sePND8_exon)$meanLogCPM, log2FoldChange = rowData(sePND8_exon)$coefficient, padj = rowData(sePND8_exon)$bin.FDR)
+
+#plot
+ggmaplot(maData, 
+   fdr = 0.05, fc = 2, size = 0.4,
+    xlab = "Log2 mean expression",
+    ylab = "Log2 fold change",
+    top = 3,
+    font.label = c("bold", 11), label.rectangle = TRUE,
+    font.legend = "bold",
+    font.main = "bold"
+  
+)
+
+#UTR
+
+#data preparation
+maData_utr <- data.frame(baseMean = rowData(sePND8_utr)$meanLogCPM, log2FoldChange = rowData(sePND8_utr)$coefficient, padj = rowData(sePND8_utr)$bin.FDR)
+
+#plot
+ggmaplot(maData_utr, 
+   fdr = 0.05, fc = 2, size = 0.4,
+    xlab = "Log2 mean expression",
+    ylab = "Log2 fold change",
+    top = 3,
+    font.label = c("bold", 11), label.rectangle = TRUE,
+    font.legend = "bold",
+    font.main = "bold"
+  
+)
+
+
+```
+
+#Volcano Plot (exon analysis)
+```{R}
+#Exon
+
+EnhancedVolcano(rowData(sePND8_exon),
+    lab = rownames(rowData(sePND8_exon)),
+    x = 'coefficient',
+    y = 'bin.FDR',
+        )
+
+#UTR
+
+EnhancedVolcano(rowData(sePND8_utr),
+    lab = rownames(rowData(sePND8_utr)),
+    x = 'coefficient',
+    y = 'bin.FDR',
+        )
+```
+
+#Heatmap
+```{R}
+#Exon
+
+significant <- rowRanges(sePND8_exon)$bin.p.value <= 0.01
+sePND8_significant <- sePND8_exon[significant,]
+
+sechm(sePND8_significant, genes=rownames(assay(sePND8_significant)),do.scale = TRUE)
+
+
+#UTR
+
+significant_utr <- rowRanges(sePND8_utr)$bin.p.value <= 0.01
+sePND8_significant_utr <- sePND8_utr[significant_utr,]
+
+sechm(sePND8_significant_utr, genes=rownames(assay(sePND8_significant)),
+      do.scale = TRUE)
+
+```
