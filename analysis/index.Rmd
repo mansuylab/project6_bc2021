@@ -8,4 +8,12 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+# Julien analysis reports
+
+1. [PCA plots of data](1_Preprocessed_plot_JC.html)
+
+2. [DEU and DUTRU](2_Differential_Analysis_JC.html)
+
+3. [Plots post-differential-analysis](3_Processed_plot_PND8_JC.html)
+
+4. [diffUTR plots](4_Vignette_Plot_PND8_JC.html)
