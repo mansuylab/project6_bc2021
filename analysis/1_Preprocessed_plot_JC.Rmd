@@ -9,7 +9,7 @@ editor_options:
 
 
 #Library
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(SummarizedExperiment)
 library(ggplot2)
 library(factoextra)
