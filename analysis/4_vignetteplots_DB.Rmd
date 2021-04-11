@@ -50,37 +50,28 @@ plot10 <- deuBinPlot(rse1, "Fastkd2", type = "sample", colour = "Group")
 plot11 <- deuBinPlot(rse1, "Fibcd1", type = "sample", colour = "Group")
 plot12 <- deuBinPlot(rse1, "Nuak1", type = "sample", colour = "Group")
 
+plot3
 plot13 <- geneBinHeatmap(rse, "Arg2", removeAmbiguous = TRUE)
+plot4
 plot14 <- geneBinHeatmap(rse, "Alg10b", removeAmbiguous = TRUE)
+plot5
 plot15 <- geneBinHeatmap(rse, "Ss18l1", removeAmbiguous = TRUE)
+plot6
 plot16 <- geneBinHeatmap(rse, "Akap5", removeAmbiguous = TRUE)
+plot7
 plot17 <- geneBinHeatmap(rse, "Mei1", removeAmbiguous = TRUE)
+plot8
 plot18 <- geneBinHeatmap(rse, "Enthd2", removeAmbiguous = TRUE)
+plot9
 plot19 <- geneBinHeatmap(rse, "Rnf145", removeAmbiguous = TRUE)
+plot10
 plot20 <- geneBinHeatmap(rse, "Fastkd2", removeAmbiguous = TRUE)
+plot11
 plot21 <- geneBinHeatmap(rse, "Fibcd1", removeAmbiguous = TRUE)
+plot12
 plot22 <- geneBinHeatmap(rse, "Nuak1", removeAmbiguous = TRUE)
 
 
-plot3
-plot13
-plot4
-plot14
-plot5
-plot15
-plot6
-plot16
-plot7
-plot17
-plot8
-plot18
-plot9
-plot19
-plot10
-plot20
-plot11
-plot21
-plot12
-plot22
+
 
 ```
