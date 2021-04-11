@@ -425,22 +425,23 @@ data/counts_bins_apa.rds
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree000b69c45042d48b03c1d595522828411333e894targetblank000b69ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/000b69c45042d48b03c1d595522828411333e894" target="_blank">000b69c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree8c23cd4002a1e76a6481f758d67ef612839c7321targetblank8c23cd4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/8c23cd4002a1e76a6481f758d67ef612839c7321" target="_blank">8c23cd4</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree000b69c45042d48b03c1d595522828411333e894targetblank000b69ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree8c23cd4002a1e76a6481f758d67ef612839c7321targetblank8c23cd4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/000b69c45042d48b03c1d595522828411333e894" target="_blank">000b69c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/8c23cd4002a1e76a6481f758d67ef612839c7321" target="_blank">8c23cd4</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    analysis/figure/
     Ignored:    data/counts_bins.rds
 
 Untracked files:
@@ -483,6 +484,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/8c23cd4002a1e76a6481f758d67ef612839c7321/analysis/4_Vignette_Plot_PND8_JC.Rmd" target="_blank">8c23cd4</a>
+</td>
+<td>
+Julien Chabbey
+</td>
+<td>
+2021-04-11
+</td>
+<td>
+small changes in samples genes profiler
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mansuylab/project6_bc2021/3a391ac4443eb86a5e685635beac0243a23d500e/docs/4_Vignette_Plot_PND8_JC.html" target="_blank">3a391ac</a>
+</td>
+<td>
+Julien Chabbey
+</td>
+<td>
+2021-04-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -603,7 +638,7 @@ sePND8_exon &lt;- addNormalizedAssays(sePND8_exon)
 #UTR
 
 #Top 10 genes: Actb, Ccdc38, Hnrnpu, Eps15, Utp18, Capzb, Ipcef1, Pdcd4, Cstf2t, Fam214a
-sePND8_exon &lt;- addNormalizedAssays(sePND8_exon)
+sePND8_utr &lt;- addNormalizedAssays(sePND8_utr)
 #deuBinPlot(sePND8_utr,&quot;Jund&quot;)
 
 #deuBinPlot(sePND8_utr,&quot;Jund&quot;, type=&quot;Group&quot;, colour=&quot;Group&quot;)
@@ -623,9 +658,9 @@ sePND8_exon &lt;- addNormalizedAssays(sePND8_exon)
 <pre class="r"><code>#Gene profiler
 deuBinPlot(sePND8_exon,&quot;Wbp11&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Wbp11&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
+<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Wbp11&quot;, type=&quot;condition&quot;, colour= &quot;Group&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Wbp11&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Wbp11&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Wbp11&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -641,7 +676,7 @@ deuBinPlot(sePND8_exon,&quot;AC141643.2&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;AC141643.2&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;AC141643.2&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;AC141643.2&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-7-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;AC141643.2&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -657,7 +692,7 @@ deuBinPlot(sePND8_exon,&quot;Gm5518&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Gm5518&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Gm5518&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Gm5518&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Gm5518&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -673,7 +708,7 @@ deuBinPlot(sePND8_exon,&quot;Prpf38a&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Prpf38a&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Prpf38a&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Prpf38a&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-9-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Prpf38a&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -689,7 +724,7 @@ deuBinPlot(sePND8_exon,&quot;Rgs4&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Rgs4&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Rgs4&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Rgs4&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-10-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Rgs4&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -705,7 +740,7 @@ deuBinPlot(sePND8_exon,&quot;Slc26a6&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Slc26a6&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Slc26a6&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Slc26a6&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-11-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Slc26a6&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -769,7 +804,7 @@ deuBinPlot(sePND8_exon,&quot;Gja4&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Gja4&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Gja4&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Gja4&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Gja4&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -818,23 +853,23 @@ deuBinPlot(sePND8_exon,&quot;Hnrnpu&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Hnrnpu&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Hnrnpu&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
-<p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Hnrnpu&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
+#deuBinPlot(sePND8_exon,&quot;Hnrnpu&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
+
+#deuBinPlot(sePND8_exon,&quot;Hnrnpu&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
   #scale_colour_manual(values=c(CTRL=&quot;darkblue&quot;, LTP=&quot;red&quot;))
 
 #Heatmap
 
 geneBinHeatmap(sePND8_exon, &quot;Hnrnpu&quot;)</code></pre>
-<p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-18-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>#Eps15 - UTR</p>
 <pre class="r"><code>#Gene profiler
 deuBinPlot(sePND8_exon,&quot;Eps15&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Eps15&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
+<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Eps15&quot;, type=&quot;condition&quot;, colour=&quot;Group&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Eps15&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Eps15&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-19-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Eps15&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -850,7 +885,7 @@ deuBinPlot(sePND8_exon,&quot;Utp18&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Utp18&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Utp18&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Utp18&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-20-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Utp18&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -866,7 +901,7 @@ deuBinPlot(sePND8_exon,&quot;Capzb&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Capzb&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Capzb&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Capzb&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-21-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Capzb&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -882,7 +917,7 @@ deuBinPlot(sePND8_exon,&quot;Cpox&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Cpox&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Cpox&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Cpox&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-22-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Cpox&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -898,7 +933,7 @@ deuBinPlot(sePND8_exon,&quot;Alox8&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Alox8&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Alox8&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Alox8&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-23-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Alox8&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -914,7 +949,7 @@ deuBinPlot(sePND8_exon,&quot;Cstf2t&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Cstf2t&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Cstf2t&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Cstf2t&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-24-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Cstf2t&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -930,7 +965,7 @@ deuBinPlot(sePND8_exon,&quot;Pdcd4&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Pdcd4&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
 
-deuBinPlot(sePND8_exon,&quot;Pdcd4&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Pdcd4&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-25-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Pdcd4&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -944,11 +979,11 @@ geneBinHeatmap(sePND8_exon, &quot;Pdcd4&quot;)</code></pre>
 <pre class="r"><code>#Gene profiler
 deuBinPlot(sePND8_exon,&quot;Fam214a&quot;)</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Fam214a&quot;, type=&quot;condition&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)
+<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Fam214a&quot;, type=&quot;condition&quot;, colour= &quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))
 
-deuBinPlot(sePND8_exon,&quot;Fam214a&quot;, type=&quot;sample&quot;, colour=&quot;condition&quot;, condition = &quot;Group&quot;)</code></pre>
+deuBinPlot(sePND8_exon,&quot;Fam214a&quot;, type=&quot;sample&quot;, colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;))</code></pre>
 <p><img src="figure/4_Vignette_Plot_PND8_JC.Rmd/unnamed-chunk-26-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Fam214a&quot;,type=&quot;condition&quot;,colour=&quot;condition&quot;, condition = &quot;Group&quot;) + 
+<pre class="r"><code>#deuBinPlot(sePND8_exon,&quot;Fam214a&quot;,type=&quot;condition&quot;,colour=&quot;Group&quot;, condition = c(&quot;Control&quot;,&quot;MSUS&quot;)) +
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
   #scale_colour_manual(values=c(CTRL=&quot;darkblue&quot;, LTP=&quot;red&quot;))
 
