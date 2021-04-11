@@ -66,7 +66,7 @@ sePND8_exon <- addNormalizedAssays(sePND8_exon)
 #UTR
 
 #Top 10 genes: Actb, Ccdc38, Hnrnpu, Eps15, Utp18, Capzb, Ipcef1, Pdcd4, Cstf2t, Fam214a
-sePND8_exon <- addNormalizedAssays(sePND8_exon)
+sePND8_utr <- addNormalizedAssays(sePND8_utr)
 #deuBinPlot(sePND8_utr,"Jund")
 
 #deuBinPlot(sePND8_utr,"Jund", type="Group", colour="Group")
@@ -93,9 +93,9 @@ sePND8_exon <- addNormalizedAssays(sePND8_exon)
 #Gene profiler
 deuBinPlot(sePND8_exon,"Wbp11")
 
-#deuBinPlot(sePND8_exon,"Wbp11", type="condition", colour="condition", condition = "Group")
+#deuBinPlot(sePND8_exon,"Wbp11", type="condition", colour= "Group", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Wbp11", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Wbp11", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Wbp11",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -115,7 +115,7 @@ deuBinPlot(sePND8_exon,"AC141643.2")
 
 #deuBinPlot(sePND8_exon,"AC141643.2", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"AC141643.2", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"AC141643.2", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"AC141643.2",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -136,7 +136,7 @@ deuBinPlot(sePND8_exon,"Gm5518")
 
 #deuBinPlot(sePND8_exon,"Gm5518", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Gm5518", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Gm5518", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Gm5518",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -157,7 +157,7 @@ deuBinPlot(sePND8_exon,"Prpf38a")
 
 #deuBinPlot(sePND8_exon,"Prpf38a", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Prpf38a", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Prpf38a", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Prpf38a",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -178,7 +178,7 @@ deuBinPlot(sePND8_exon,"Rgs4")
 
 #deuBinPlot(sePND8_exon,"Rgs4", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Rgs4", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Rgs4", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Rgs4",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -199,7 +199,7 @@ deuBinPlot(sePND8_exon,"Slc26a6")
 
 #deuBinPlot(sePND8_exon,"Slc26a6", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Slc26a6", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Slc26a6", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Slc26a6",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -283,7 +283,7 @@ deuBinPlot(sePND8_exon,"Gja4")
 
 #deuBinPlot(sePND8_exon,"Gja4", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Gja4", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Gja4", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Gja4",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -348,7 +348,7 @@ deuBinPlot(sePND8_exon,"Hnrnpu")
 
 #deuBinPlot(sePND8_exon,"Hnrnpu", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Hnrnpu", type="sample", colour="condition", condition = "Group")
+#deuBinPlot(sePND8_exon,"Hnrnpu", type="sample", colour="condition", condition = "Group")
 
 #deuBinPlot(sePND8_exon,"Hnrnpu",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -367,9 +367,9 @@ geneBinHeatmap(sePND8_exon, "Hnrnpu")
 #Gene profiler
 deuBinPlot(sePND8_exon,"Eps15")
 
-#deuBinPlot(sePND8_exon,"Eps15", type="condition", colour="condition", condition = "Group")
+#deuBinPlot(sePND8_exon,"Eps15", type="condition", colour="Group", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Eps15", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Eps15", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Eps15",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -390,7 +390,7 @@ deuBinPlot(sePND8_exon,"Utp18")
 
 #deuBinPlot(sePND8_exon,"Utp18", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Utp18", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Utp18", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Utp18",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -411,7 +411,7 @@ deuBinPlot(sePND8_exon,"Capzb")
 
 #deuBinPlot(sePND8_exon,"Capzb", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Capzb", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Capzb", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Capzb",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -432,7 +432,7 @@ deuBinPlot(sePND8_exon,"Cpox")
 
 #deuBinPlot(sePND8_exon,"Cpox", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Cpox", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Cpox", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Cpox",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -451,9 +451,10 @@ geneBinHeatmap(sePND8_exon, "Cpox")
 #Gene profiler
 deuBinPlot(sePND8_exon,"Alox8")
 
+
 #deuBinPlot(sePND8_exon,"Alox8", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Alox8", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Alox8", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Alox8",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -474,7 +475,7 @@ deuBinPlot(sePND8_exon,"Cstf2t")
 
 #deuBinPlot(sePND8_exon,"Cstf2t", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Cstf2t", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Cstf2t", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Cstf2t",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -495,7 +496,7 @@ deuBinPlot(sePND8_exon,"Pdcd4")
 
 #deuBinPlot(sePND8_exon,"Pdcd4", type="condition", colour="condition", condition = "Group")
 
-deuBinPlot(sePND8_exon,"Pdcd4", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Pdcd4", type="sample", colour="Group", condition = c("Control","MSUS"))
 
 #deuBinPlot(sePND8_exon,"Pdcd4",type="condition",colour="condition", condition = "Group") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -514,11 +515,11 @@ geneBinHeatmap(sePND8_exon, "Pdcd4")
 #Gene profiler
 deuBinPlot(sePND8_exon,"Fam214a")
 
-#deuBinPlot(sePND8_exon,"Fam214a", type="condition", colour="condition", condition = "Group")
+#deuBinPlot(sePND8_exon,"Fam214a", type="condition", colour= "Group", condition = c("Control","MSUS"))
 
-deuBinPlot(sePND8_exon,"Fam214a", type="sample", colour="condition", condition = "Group")
+deuBinPlot(sePND8_exon,"Fam214a", type="sample", colour="Group", condition = c("Control","MSUS"))
 
-#deuBinPlot(sePND8_exon,"Fam214a",type="condition",colour="condition", condition = "Group") + 
+#deuBinPlot(sePND8_exon,"Fam214a",type="condition",colour="Group", condition = c("Control","MSUS")) +
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
   #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
 
