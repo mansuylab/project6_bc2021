@@ -11,34 +11,76 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-
+```{r, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(diffUTR)
 library(SummarizedExperiment)
+library('patchwork')
+```
 
-counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
+
+
+```{r}
+
+counts_bins <- readRDS("~/Desktop/git2/project6_bc2021/data/counts_bins.rds")
 
 pnw20 <- counts_bins[,colData(counts_bins)$Stage == "PNW20"]
 rse <- diffSpliceWrapper(pnw20, design = ~Group, excludeTypes = c("CDS","non-coding"))
 rse.exon <- diffSpliceWrapper(pnw20, design = ~Group)
 
 plot1 <- plotTopGenes(rse, diffUTR = TRUE)
-plot2 <- plotTopGenes(rse.exon, diffUTR = TRUE)
+plot2 <- plotTopGenes(rse.exon, diffUTR = FALSE)
 
 plot1
 plot2
 
+plot1+plot2
 
 rse1 <- addNormalizedAssays(rse)
 rse2 <- addNormalizedAssays(rse.exon)
 
+plot3 <- deuBinPlot(rse1, "Arg2", type = "sample", colour = "Group")
+plot4 <- deuBinPlot(rse1, "Alg10b", type = "sample", colour = "Group")
+plot5 <- deuBinPlot(rse1, "Ss18l1", type = "sample", colour = "Group")
+plot6 <- deuBinPlot(rse1, "Akap5", type = "sample", colour = "Group")
+plot7 <- deuBinPlot(rse1, "Mei1", type = "sample", colour = "Group")
+plot8 <- deuBinPlot(rse1, "Enthd2", type = "sample", colour = "Group")
+plot9 <- deuBinPlot(rse1, "Rnf145", type = "sample", colour = "Group")
+plot10 <- deuBinPlot(rse1, "Fastkd2", type = "sample", colour = "Group")
+plot11 <- deuBinPlot(rse1, "Fibcd1", type = "sample", colour = "Group")
+plot12 <- deuBinPlot(rse1, "Nuak1", type = "sample", colour = "Group")
 
-plot3 <- deuBinPlot(rse1, "Alg10b")
+plot13 <- geneBinHeatmap(rse, "Arg2", removeAmbiguous = TRUE)
+plot14 <- geneBinHeatmap(rse, "Alg10b", removeAmbiguous = TRUE)
+plot15 <- geneBinHeatmap(rse, "Ss18l1", removeAmbiguous = TRUE)
+plot16 <- geneBinHeatmap(rse, "Akap5", removeAmbiguous = TRUE)
+plot17 <- geneBinHeatmap(rse, "Mei1", removeAmbiguous = TRUE)
+plot18 <- geneBinHeatmap(rse, "Enthd2", removeAmbiguous = TRUE)
+plot19 <- geneBinHeatmap(rse, "Rnf145", removeAmbiguous = TRUE)
+plot20 <- geneBinHeatmap(rse, "Fastkd2", removeAmbiguous = TRUE)
+plot21 <- geneBinHeatmap(rse, "Fibcd1", removeAmbiguous = TRUE)
+plot22 <- geneBinHeatmap(rse, "Nuak1", removeAmbiguous = TRUE)
 
-summary(rse)
 
-plot4 <- geneBinHeatmap(rse, "Arg2")
-
+plot3
+plot13
+plot4
+plot14
+plot5
+plot15
+plot6
+plot16
+plot7
+plot17
+plot8
+plot18
+plot9
+plot19
+plot10
+plot20
+plot11
+plot21
+plot12
+plot22
 
 ```
