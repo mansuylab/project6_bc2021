@@ -287,7 +287,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -296,7 +296,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -305,10 +305,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-03-31
+<strong>Last updated:</strong> 2021-04-11
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>project6_bc2021/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -324,12 +324,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -384,52 +384,28 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>
-Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
-</p>
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th style="text-align:left;">
-absolute
-</th>
-<th style="text-align:left;">
-relative
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-~/Desktop/git/project6_bc2021/data/counts_bins.rds
-</td>
-<td style="text-align:left;">
-data/counts_bins.rds
-</td>
-</tr>
-</tbody>
-</table>
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeaa1964276a85a72be79064620641d1598251698ftargetblankaa19642a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/aa1964276a85a72be79064620641d1598251698f" target="_blank">aa19642</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeb9dd2a6b8b7f28984281347fa8d9061fc750fcectargetblankb9dd2a6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/b9dd2a6b8b7f28984281347fa8d9061fc750fcec" target="_blank">b9dd2a6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeaa1964276a85a72be79064620641d1598251698ftargetblankaa19642a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeb9dd2a6b8b7f28984281347fa8d9061fc750fcectargetblankb9dd2a6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/aa1964276a85a72be79064620641d1598251698f" target="_blank">aa19642</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/b9dd2a6b8b7f28984281347fa8d9061fc750fcec" target="_blank">b9dd2a6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -437,25 +413,10 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
-    Ignored:    .Rapp.history
     Ignored:    .Rhistory
-    Ignored:    .Rproj.user/
-    Ignored:    analysis/.DS_Store
-    Ignored:    data/.DS_Store
-    Ignored:    data/.Rapp.history
+    Ignored:    analysis/.RDataTmp
+    Ignored:    analysis/.Rhistory
     Ignored:    data/counts_bins.rds
-
-Untracked files:
-    Untracked:  analysis/1_PCA_boxplot_HM_DB.Rmd
-    Untracked:  analysis/2_diffAna_DB.Rmd
-    Untracked:  analysis/3_Vol_HM_MA_DB.Rmd
-    Untracked:  analysis/4_vignetteplots_DB.Rmd
-
-Unstaged changes:
-    Deleted:    analysis/1PCA_boxplot_HM.Rmd
-    Deleted:    analysis/2diffAna.Rmd
-    Deleted:    analysis/3Vol_HM_MA.Rmd
-    Deleted:    analysis/4vignetteplots.Rmd
 
 </code></pre>
 <p>
@@ -468,135 +429,105 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/1_PCA_boxplot_HM_DB.Rmd</code>) and HTML (<code>docs/1_PCA_boxplot_HM_DB.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/b9dd2a6b8b7f28984281347fa8d9061fc750fcec/analysis/1_PCA_boxplot_HM_DB.Rmd" target="_blank">b9dd2a6</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+<td>
+Added 10 genes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/analysis/1_PCA_boxplot_HM_DB.Rmd" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+<td>
+rename and HTML files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mansuylab/project6_bc2021/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/1_PCA_boxplot_HM_DB.html" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+<td>
+rename and HTML files
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
-<div id="pca-plots" class="section level2">
-<h2>PCA Plots</h2>
 <pre class="r"><code>library(&#39;patchwork&#39;)
 library(workflowr)
 library(gridExtra)
-library(SummarizedExperiment)</code></pre>
-<pre><code>Lade nötiges Paket: MatrixGenerics</code></pre>
-<pre><code>Lade nötiges Paket: matrixStats</code></pre>
-<pre><code>
-Attache Paket: &#39;MatrixGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-    colWeightedMeans, colWeightedMedians, colWeightedSds,
-    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-    rowWeightedSds, rowWeightedVars</code></pre>
-<pre><code>Lade nötiges Paket: GenomicRanges</code></pre>
-<pre><code>Lade nötiges Paket: stats4</code></pre>
-<pre><code>Lade nötiges Paket: BiocGenerics</code></pre>
-<pre><code>Lade nötiges Paket: parallel</code></pre>
-<pre><code>
-Attache Paket: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:parallel&#39;:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
-<pre><code>The following object is masked from &#39;package:gridExtra&#39;:
-
-    combine</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which.max, which.min</code></pre>
-<pre><code>Lade nötiges Paket: S4Vectors</code></pre>
-<pre><code>
-Attache Paket: &#39;S4Vectors&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:base&#39;:
-
-    expand.grid</code></pre>
-<pre><code>Lade nötiges Paket: IRanges</code></pre>
-<pre><code>Lade nötiges Paket: GenomeInfoDb</code></pre>
-<pre><code>Lade nötiges Paket: Biobase</code></pre>
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre><code>
-Attache Paket: &#39;Biobase&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:MatrixGenerics&#39;:
-
-    rowMedians</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    anyMissing, rowMedians</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(factoextra)</code></pre>
-<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
-<pre class="r"><code>library(limma)</code></pre>
-<pre><code>
-Attache Paket: &#39;limma&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:BiocGenerics&#39;:
-
-    plotMA</code></pre>
-<pre class="r"><code>library(edgeR)
+library(SummarizedExperiment)
+library(ggplot2)
+library(factoextra)
+library(limma)
+library(edgeR)
 library(reshape2)
-library(dplyr)</code></pre>
-<pre><code>
-Attache Paket: &#39;dplyr&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:Biobase&#39;:
-
-    combine</code></pre>
-<pre><code>The following objects are masked from &#39;package:GenomicRanges&#39;:
-
-    intersect, setdiff, union</code></pre>
-<pre><code>The following object is masked from &#39;package:GenomeInfoDb&#39;:
-
-    intersect</code></pre>
-<pre><code>The following objects are masked from &#39;package:IRanges&#39;:
-
-    collapse, desc, intersect, setdiff, slice, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:S4Vectors&#39;:
-
-    first, intersect, rename, setdiff, setequal, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:BiocGenerics&#39;:
-
-    combine, intersect, setdiff, union</code></pre>
-<pre><code>The following object is masked from &#39;package:matrixStats&#39;:
-
-    count</code></pre>
-<pre><code>The following object is masked from &#39;package:gridExtra&#39;:
-
-    combine</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(rcartocolor)
-library(SEtools)
-
-##Colorcoding for colorblind people
+library(dplyr)
+library(rcartocolor)
+library(SEtools)</code></pre>
+<div id="pca-plots" class="section level2">
+<h2>PCA Plots</h2>
+<pre class="r"><code>##Colorcoding for colorblind people
 datcol &lt;- data.frame(obj = rep(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), 5), val = 1:15)
 cols &lt;- rcartocolor::carto_pal(n = 11, name = &quot;Safe&quot;)
 hmcols &lt;- rev(RColorBrewer::brewer.pal(n = 11, name = &quot;RdBu&quot;))
@@ -626,7 +557,7 @@ pca_se &lt;- function(se, assay=1, group,...){
 }
 
 pca_se(counts_bins[1:1000,], group = &#39;Group&#39;)</code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>##PCA manually-----
 dat1 &lt;- data.frame(assay(counts_bins))
 cd &lt;- data.frame(colData(counts_bins), stringsAsFactor = F)
@@ -684,7 +615,7 @@ pca.plot.norm &lt;- ggplot(pcaData.norm, aes(x = PC1, y =PC2, shape=Stage, color
   xlab(percentage.norm[1]) + ylab(percentage.norm[2])+
   ggtitle(&quot;PCA plot normalized&quot;) + theme(plot.title = element_text(size = 20, hjust=0.5))
 pca.plot+pca.plot.norm+legend</code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>##Box plots------
 
 dat1 &lt;- data.frame(assay(counts_bins))
@@ -692,14 +623,14 @@ cd &lt;- data.frame(colData(counts_bins), stringsAsFactor = F)
 
 ##Raw Counts
 boxplot(dat1, main = &quot;Counts&quot;, outline=FALSE, las=2)</code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>## log2 counts without normalization
 log.counts &lt;- log(dat1+1)
 boxplot(log.counts, main = &quot;Log2 Counts&quot;, outline=FALSE, las=2) </code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-4.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>##normalized log2 counts
 boxplot(norm.dge, main = &quot;Boxplot of normalized log counts&quot;, las=2, outline=FALSE) </code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-5.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>##For color coding
 cpm2 &lt;- melt(norm.dge)
 a &lt;- inner_join(cpm2, cd, by= c(&quot;Var2&quot; = &quot;Samples_ID&quot;))
@@ -722,7 +653,7 @@ box.merge &lt;- ggplot(a, aes(x=Var2, y=value, color = Group))+
   facet_wrap(~Stage, scales = &quot;free_x&quot;)
 
 box.merge</code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-6.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>## Heatmaps first 300 rows
 
 
@@ -885,7 +816,7 @@ UTR300 &lt;- sechm(UTR, rownames(UTR)[1:300], name = &quot;UTR&quot;, isMult = T
 <pre class="r"><code>non300 &lt;- sechm(noncoding, rownames(noncoding)[1:300], name = &quot;non-coding&quot;,hmcols = hmcols )</code></pre>
 <pre><code>Using assay logcpm</code></pre>
 <pre class="r"><code>UTR300+CDS300+non300</code></pre>
-<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-1-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/1_PCA_boxplot_HM_DB.Rmd/unnamed-chunk-2-7.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -941,8 +872,8 @@ loaded via a namespace (and not attached):
  [49] scales_1.1.1           TSP_1.1-10             promises_1.2.0.1      
  [52] RColorBrewer_1.1-2     ComplexHeatmap_2.6.2   yaml_2.2.1            
  [55] curl_4.3               memoise_2.0.0          sass_0.3.1            
- [58] stringi_1.5.3          RSQLite_2.2.5          randomcoloR_1.1.0.1   
- [61] highr_0.8              genefilter_1.72.1      foreach_1.5.1         
+ [58] stringi_1.5.3          RSQLite_2.2.5          highr_0.8             
+ [61] randomcoloR_1.1.0.1    genefilter_1.72.1      foreach_1.5.1         
  [64] seriation_1.2-9        zip_2.1.1              BiocParallel_1.24.1   
  [67] shape_1.4.5            rlang_0.4.10           pkgconfig_2.0.3       
  [70] bitops_1.0-6           evaluate_0.14          lattice_0.20-41       
@@ -950,13 +881,14 @@ loaded via a namespace (and not attached):
  [76] tidyselect_1.1.0       plyr_1.8.6             magrittr_2.0.1        
  [79] DESeq2_1.30.1          R6_2.5.0               generics_0.1.0        
  [82] DelayedArray_0.16.3    DBI_1.1.1              mgcv_1.8-34           
- [85] pillar_1.5.1           withr_2.4.1            survival_3.2-10       
- [88] RCurl_1.98-1.3         tibble_3.1.0           crayon_1.4.1          
- [91] utf8_1.2.1             rmarkdown_2.7          GetoptLong_1.0.5      
- [94] locfit_1.5-9.4         grid_4.0.4             sva_3.38.0            
- [97] data.table_1.14.0      blob_1.2.1             git2r_0.28.0          
-[100] digest_0.6.27          xtable_1.8-4           httpuv_1.5.5          
-[103] munsell_0.5.0          registry_0.5-1         bslib_0.2.4           </code></pre>
+ [85] pillar_1.5.1           whisker_0.4            withr_2.4.1           
+ [88] survival_3.2-10        RCurl_1.98-1.3         tibble_3.1.0          
+ [91] crayon_1.4.1           utf8_1.2.1             rmarkdown_2.7         
+ [94] GetoptLong_1.0.5       locfit_1.5-9.4         grid_4.0.4            
+ [97] sva_3.38.0             data.table_1.14.0      blob_1.2.1            
+[100] git2r_0.28.0           digest_0.6.27          xtable_1.8-4          
+[103] httpuv_1.5.5           munsell_0.5.0          registry_0.5-1        
+[106] bslib_0.2.4           </code></pre>
 </div>
 </div>
 
