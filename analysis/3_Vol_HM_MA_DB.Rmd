@@ -11,10 +11,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Volcano plot, mod. Heatmap, MA plot
 
-```{r}
-
+```{r, message=FALSE, warning=FALSE}
 library(EnhancedVolcano)
 library(SummarizedExperiment)
 library(workflowr)
@@ -30,6 +28,14 @@ library(rcartocolor)
 library(SEtools)
 library(ggrepel)
 library(ggpubr)
+```
+
+
+## Volcano plot, mod. Heatmap, MA plot
+
+```{r}
+
+
 
 counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
 
