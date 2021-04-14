@@ -305,7 +305,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-04-11
+<strong>Last updated:</strong> 2021-04-14
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -420,16 +420,16 @@ data/counts_bins.rds
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree4a86421f1e849bea22390c2c56dfb4db6d5ef9b6targetblank4a86421a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/4a86421f1e849bea22390c2c56dfb4db6d5ef9b6" target="_blank">4a86421</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree63c3e37dd7ad8d7e045ee2ba4b14ed20558482f7targetblank63c3e37a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/63c3e37dd7ad8d7e045ee2ba4b14ed20558482f7" target="_blank">63c3e37</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree4a86421f1e849bea22390c2c56dfb4db6d5ef9b6targetblank4a86421a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021tree63c3e37dd7ad8d7e045ee2ba4b14ed20558482f7targetblank63c3e37a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/4a86421f1e849bea22390c2c56dfb4db6d5ef9b6" target="_blank">4a86421</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/63c3e37dd7ad8d7e045ee2ba4b14ed20558482f7" target="_blank">63c3e37</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -437,10 +437,16 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
+    Ignored:    .RData
     Ignored:    .Rhistory
     Ignored:    analysis/.RDataTmp
     Ignored:    analysis/.Rhistory
+    Ignored:    analysis/1_PCA_boxplot_HM_DB_cache/
+    Ignored:    analysis/figure/
     Ignored:    data/counts_bins.rds
+
+Unstaged changes:
+    Modified:   analysis/1_PCA_boxplot_HM_DB.Rmd
 
 </code></pre>
 <p>
@@ -479,6 +485,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/63c3e37dd7ad8d7e045ee2ba4b14ed20558482f7/analysis/4_vignetteplots_DB.Rmd" target="_blank">63c3e37</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-14
+</td>
+<td>
+Added 10 genes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mansuylab/project6_bc2021/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/4_vignetteplots_DB.html" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -715,6 +755,8 @@ BuglianiD
 <pre class="r"><code>rse1 &lt;- addNormalizedAssays(rse)
 rse2 &lt;- addNormalizedAssays(rse.exon)
 
+
+##diffUTR
 plot3 &lt;- deuBinPlot(rse1, &quot;Arg2&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)
 plot4 &lt;- deuBinPlot(rse1, &quot;Alg10b&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)
 plot5 &lt;- deuBinPlot(rse1, &quot;Ss18l1&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)
@@ -750,6 +792,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-4.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-4.png" target="_blank">6bd54f8</a>
@@ -791,6 +844,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-5.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-5.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -804,7 +868,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot4</code></pre>
+<pre class="r"><code>##noisy signal
+plot4</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-6">
@@ -828,6 +893,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-6.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-6.png" target="_blank">6bd54f8</a>
@@ -869,6 +945,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-7.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-7.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -882,7 +969,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot5</code></pre>
+<pre class="r"><code>##UTR segment really short
+plot5</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-8.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-8">
@@ -906,6 +994,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-8.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-8.png" target="_blank">6bd54f8</a>
@@ -947,6 +1046,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-9.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-9.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -960,7 +1070,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot6</code></pre>
+<pre class="r"><code>##pattern for 3 prime. BUT it contains larger bins
+plot6</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-10.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-10">
@@ -984,6 +1095,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-10.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-10.png" target="_blank">6bd54f8</a>
@@ -1025,6 +1147,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-11.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-11.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1038,7 +1171,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot7</code></pre>
+<pre class="r"><code>##2 bins -&gt; result seems odd
+plot7</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-12.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-12">
@@ -1062,6 +1196,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-12.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-12.png" target="_blank">6bd54f8</a>
@@ -1103,6 +1248,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-13.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-13.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1116,7 +1272,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot8</code></pre>
+<pre class="r"><code>##good candidate for further investigation
+plot8</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-14.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-14">
@@ -1140,6 +1297,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-14.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-14.png" target="_blank">6bd54f8</a>
@@ -1181,6 +1349,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-15.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-15.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1194,7 +1373,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot9</code></pre>
+<pre class="r"><code>##noisy signal
+plot9</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-16.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-16">
@@ -1218,6 +1398,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-16.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-16.png" target="_blank">6bd54f8</a>
@@ -1259,6 +1450,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-17.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-17.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1272,7 +1474,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot10</code></pre>
+<pre class="r"><code>##no signal visible
+plot10</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-18.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-18">
@@ -1296,6 +1499,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-18.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-18.png" target="_blank">6bd54f8</a>
@@ -1337,6 +1551,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-19.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-19.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1350,7 +1575,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot11</code></pre>
+<pre class="r"><code>##no signal visible
+plot11</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-20.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-20">
@@ -1374,6 +1600,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-20.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-20.png" target="_blank">6bd54f8</a>
@@ -1415,6 +1652,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-21.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-21.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1428,7 +1676,8 @@ BuglianiD
 </table>
 </div>
 </div>
-<pre class="r"><code>plot12</code></pre>
+<pre class="r"><code>##2 bins -&gt; result seems odd
+plot12</code></pre>
 <p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-22.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-22">
@@ -1452,6 +1701,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-22.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-22.png" target="_blank">6bd54f8</a>
@@ -1493,6 +1753,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-23.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-23.png" target="_blank">6bd54f8</a>
 </td>
 <td>
@@ -1506,6 +1777,514 @@ BuglianiD
 </table>
 </div>
 </div>
+<pre class="r"><code>##2 bins -&gt; result seems odd
+
+##Whole Exon
+deuBinPlot(rse2, &quot;Ndufab1&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-24">
+Past versions of unnamed-chunk-2-24.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-24.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-24.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>geneBinHeatmap(rse2, &quot;Ndufab1&quot;, removeAmbiguous = TRUE)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-25">
+Past versions of unnamed-chunk-2-25.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-25.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-25.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>##considered for further investigation. signal not strong
+deuBinPlot(rse2, &quot;Pcgf5&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-26">
+Past versions of unnamed-chunk-2-26.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-26.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-26.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>geneBinHeatmap(rse2, &quot;Pcgf5&quot;, removeAmbiguous = TRUE)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-27.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-27">
+Past versions of unnamed-chunk-2-27.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-27.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-27.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>##no signal visible
+deuBinPlot(rse2, &quot;Gpatch2l&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-28.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-28">
+Past versions of unnamed-chunk-2-28.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-28.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-28.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>geneBinHeatmap(rse2, &quot;Gpatch2l&quot;, removeAmbiguous = TRUE)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-29.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-29">
+Past versions of unnamed-chunk-2-29.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-29" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-29.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-29.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>##overall low log10pvalue for UTR
+deuBinPlot(rse2, &quot;Lyrm4&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-30.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-30">
+Past versions of unnamed-chunk-2-30.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-30" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-30.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-30.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>geneBinHeatmap(rse2, &quot;Lyrm4&quot;, removeAmbiguous = TRUE)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-31.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-31">
+Past versions of unnamed-chunk-2-31.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-31" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-31.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-31.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>##pattern for 5prime. again larger bins. still considered
+deuBinPlot(rse2, &quot;Pigk&quot;, type = &quot;sample&quot;, colour = &quot;Group&quot;)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-32.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-32">
+Past versions of unnamed-chunk-2-32.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-32" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-32.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-32.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>geneBinHeatmap(rse2, &quot;Pigk&quot;, removeAmbiguous = TRUE)</code></pre>
+<p><img src="figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-33.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-2-33">
+Past versions of unnamed-chunk-2-33.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-2-33" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/2db5b5ac42e6f4b116c0ed38172718d3e2f87e68/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-33.png" target="_blank">2db5b5a</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/6bd54f858a832af39302b9c72e687c15072072a9/docs/figure/4_vignetteplots_DB.Rmd/unnamed-chunk-2-33.png" target="_blank">6bd54f8</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>##noisy data. still considered</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
