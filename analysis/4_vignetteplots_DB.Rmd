@@ -28,6 +28,8 @@ pnw20 <- counts_bins[,colData(counts_bins)$Stage == "PNW20"]
 rse <- diffSpliceWrapper(pnw20, design = ~Group, excludeTypes = c("CDS","non-coding"))
 rse.exon <- diffSpliceWrapper(pnw20, design = ~Group)
 
+
+
 plot1 <- plotTopGenes(rse, diffUTR = TRUE)
 plot2 <- plotTopGenes(rse.exon, diffUTR = FALSE)
 
@@ -39,6 +41,8 @@ plot1+plot2
 rse1 <- addNormalizedAssays(rse)
 rse2 <- addNormalizedAssays(rse.exon)
 
+
+##diffUTR
 plot3 <- deuBinPlot(rse1, "Arg2", type = "sample", colour = "Group")
 plot4 <- deuBinPlot(rse1, "Alg10b", type = "sample", colour = "Group")
 plot5 <- deuBinPlot(rse1, "Ss18l1", type = "sample", colour = "Group")
@@ -52,26 +56,49 @@ plot12 <- deuBinPlot(rse1, "Nuak1", type = "sample", colour = "Group")
 
 plot3
 plot13 <- geneBinHeatmap(rse, "Arg2", removeAmbiguous = TRUE)
+##noisy signal
 plot4
 plot14 <- geneBinHeatmap(rse, "Alg10b", removeAmbiguous = TRUE)
+##UTR segment really short
 plot5
 plot15 <- geneBinHeatmap(rse, "Ss18l1", removeAmbiguous = TRUE)
+##pattern for 3 prime. BUT it contains larger bins
 plot6
 plot16 <- geneBinHeatmap(rse, "Akap5", removeAmbiguous = TRUE)
+##2 bins -> result seems odd
 plot7
 plot17 <- geneBinHeatmap(rse, "Mei1", removeAmbiguous = TRUE)
+##good candidate for further investigation
 plot8
 plot18 <- geneBinHeatmap(rse, "Enthd2", removeAmbiguous = TRUE)
+##noisy signal
 plot9
 plot19 <- geneBinHeatmap(rse, "Rnf145", removeAmbiguous = TRUE)
+##no signal visible
 plot10
 plot20 <- geneBinHeatmap(rse, "Fastkd2", removeAmbiguous = TRUE)
+##no signal visible
 plot11
 plot21 <- geneBinHeatmap(rse, "Fibcd1", removeAmbiguous = TRUE)
+##2 bins -> result seems odd
 plot12
 plot22 <- geneBinHeatmap(rse, "Nuak1", removeAmbiguous = TRUE)
+##2 bins -> result seems odd
 
-
-
-
+##Whole Exon
+deuBinPlot(rse2, "Ndufab1", type = "sample", colour = "Group")
+geneBinHeatmap(rse2, "Ndufab1", removeAmbiguous = TRUE)
+##considered for further investigation. signal not strong
+deuBinPlot(rse2, "Pcgf5", type = "sample", colour = "Group")
+geneBinHeatmap(rse2, "Pcgf5", removeAmbiguous = TRUE)
+##no signal visible
+deuBinPlot(rse2, "Gpatch2l", type = "sample", colour = "Group")
+geneBinHeatmap(rse2, "Gpatch2l", removeAmbiguous = TRUE)
+##overall low log10pvalue for UTR
+deuBinPlot(rse2, "Lyrm4", type = "sample", colour = "Group")
+geneBinHeatmap(rse2, "Lyrm4", removeAmbiguous = TRUE)
+##pattern for 5prime. again larger bins. still considered
+deuBinPlot(rse2, "Pigk", type = "sample", colour = "Group")
+geneBinHeatmap(rse2, "Pigk", removeAmbiguous = TRUE)
+##noisy data. still considered
 ```
