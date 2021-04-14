@@ -8,7 +8,7 @@ editor_options:
 ---
 
 #library
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(diffUTR)
 library(SummarizedExperiment)
 library(GenomicRanges)
@@ -42,31 +42,36 @@ plotTopGenes(sePND8_exon)
 
 #UTR
 sePND8_utr <- geneLevelStats(sePND8_utr, includeTypes="3UTR")
-plotTopGenes(sePND8_utr)
+plotTopGenes(sePND8_utr, diffUTR = TRUE)
 
 ```
 
 #Gene profiler
 ```{R}
 #Exon
+
+#Top 10 genes: Wbp11, AC141643.2, Gm5518, Prpf38a, Rgs4, Slc26a6, RP23-182M12.2, Actb, RP23-388l22.1, Gja4
+
 sePND8_exon <- addNormalizedAssays(sePND8_exon)
-deuBinPlot(sePND8_exon,"Jund")
+#deuBinPlot(sePND8_exon,"Jund")
 
 #deuBinPlot(sePND8_exon,"Jund", type="Group", colour="Group")
 
-deuBinPlot(sePND8_exon,"Jund", type="sample", colour="Group")
+#deuBinPlot(sePND8_exon,"Jund", type="sample", colour="Group")
 
 #deuBinPlot(sePND8_exon,"Jund",type="Group",colour="Group") + 
   #guides(colour = guide_legend(override.aes = list(size = 3))) +
   #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
 
 #UTR
-sePND8_exon <- addNormalizedAssays(sePND8_exon)
-deuBinPlot(sePND8_utr,"Jund")
+
+#Top 10 genes: Actb, Ccdc38, Hnrnpu, Eps15, Utp18, Capzb, Ipcef1, Pdcd4, Cstf2t, Fam214a
+sePND8_utr <- addNormalizedAssays(sePND8_utr)
+#deuBinPlot(sePND8_utr,"Jund")
 
 #deuBinPlot(sePND8_utr,"Jund", type="Group", colour="Group")
 
-deuBinPlot(sePND8_utr,"Jund", type="sample", colour="Group")
+#deuBinPlot(sePND8_utr,"Jund", type="sample", colour="Group")
 
 #deuBinPlot(sePND8_utr,"Jund",type="condition",colour="condition") + 
  # guides(colour = guide_legend(override.aes = list(size = 3))) +
@@ -77,9 +82,451 @@ deuBinPlot(sePND8_utr,"Jund", type="sample", colour="Group")
 #Heatmap
 ```{R}
 #Exon
-geneBinHeatmap(sePND8_exon, "Smg6")
+#geneBinHeatmap(sePND8_exon, "Smg6")
 
 #UTR
-geneBinHeatmap(sePND8_utr, "Smg6")
+#geneBinHeatmap(sePND8_utr, "Smg6")
+```
+
+#Wbp11 - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Wbp11")
+
+#deuBinPlot(sePND8_exon,"Wbp11", type="condition", colour= "Group", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Wbp11", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Wbp11",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Wbp11")
+
+
+```
+
+#AC141643.2 - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"AC141643.2")
+
+#deuBinPlot(sePND8_exon,"AC141643.2", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"AC141643.2", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"AC141643.2",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "AC141643.2")
+
+
+```
+
+
+#Gm5518 - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Gm5518")
+
+#deuBinPlot(sePND8_exon,"Gm5518", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Gm5518", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Gm5518",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Gm5518")
+
+
+```
+
+
+#Prpf38a - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Prpf38a")
+
+#deuBinPlot(sePND8_exon,"Prpf38a", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Prpf38a", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Prpf38a",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Prpf38a")
+
+
+```
+
+
+#Rgs4 - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Rgs4")
+
+#deuBinPlot(sePND8_exon,"Rgs4", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Rgs4", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Rgs4",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Rgs4")
+
+
+```
+
+
+#Slc26a6 - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Slc26a6")
+
+#deuBinPlot(sePND8_exon,"Slc26a6", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Slc26a6", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Slc26a6",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Slc26a6")
+
+
+```
+
+
+#RP23-182M12.2 - Exon
+```{r}
+#Gene profiler
+#deuBinPlot(sePND8_exon,"RP23-182M12.2")
+
+#deuBinPlot(sePND8_exon,"RP23-182M12.2", type="condition", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"RP23-182M12.2", type="sample", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"RP23-182M12.2",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "RP23-182M12.2")
+
+
+```
+
+
+#Actb - Exon
+```{r}
+#Gene profiler
+#deuBinPlot(sePND8_exon,"Actb")
+
+#deuBinPlot(sePND8_exon,"Actb", type="condition", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Actb", type="sample", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Actb",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Actb")
+
+
+```
+
+
+#RP23-388l22.1 - Exon
+```{r}
+#Gene profiler
+#deuBinPlot(sePND8_exon,"RP23-388I22.1")
+
+#deuBinPlot(sePND8_exon,"RP23-388I22.1", type="condition", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"RP23-388I22.1", type="sample", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"RP23-388I22.1",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "RP23-388I22.1")
+
+
+```
+
+
+#Gja4 - Exon
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Gja4")
+
+#deuBinPlot(sePND8_exon,"Gja4", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Gja4", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Gja4",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Gja4")
+
+
+```
+
+
+#Top 10 genes (UTR): Actb, Ccdc38, Hnrnpu, Eps15, Utp18, Capzb, Cpox, Alox8, Cstf2t, Fam214a
+
+#Actb - UTR
+```{r}
+#Gene profiler
+#deuBinPlot(sePND8_exon,"Actb")
+
+#deuBinPlot(sePND8_exon,"Actb", type="condition", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Actb", type="sample", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Actb",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Actb")
+
+
+```
+
+
+#Ccdc38 - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Ccdc38")
+
+#deuBinPlot(sePND8_exon,"Ccdc38", type="condition", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Ccdc38", type="sample", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Ccdc38",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Ccdc38")
+
+
+```
+
+
+#Hnrnpu - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Hnrnpu")
+
+#deuBinPlot(sePND8_exon,"Hnrnpu", type="condition", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Hnrnpu", type="sample", colour="condition", condition = "Group")
+
+#deuBinPlot(sePND8_exon,"Hnrnpu",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Hnrnpu")
+
+
+```
+
+
+#Eps15 - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Eps15")
+
+#deuBinPlot(sePND8_exon,"Eps15", type="condition", colour="Group", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Eps15", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Eps15",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Eps15")
+
+
+```
+
+
+#Utp18 - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Utp18")
+
+#deuBinPlot(sePND8_exon,"Utp18", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Utp18", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Utp18",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Utp18")
+
+
+```
+
+
+#Capzb - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Capzb")
+
+#deuBinPlot(sePND8_exon,"Capzb", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Capzb", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Capzb",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Capzb")
+
+
+```
+
+
+#Cpox - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Cpox")
+
+#deuBinPlot(sePND8_exon,"Cpox", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Cpox", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Cpox",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Cpox")
+
+
+```
+
+
+#Alox8 - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Alox8")
+
+
+#deuBinPlot(sePND8_exon,"Alox8", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Alox8", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Alox8",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Alox8")
+
+
+```
+
+
+#Cstf2t - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Cstf2t")
+
+#deuBinPlot(sePND8_exon,"Cstf2t", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Cstf2t", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Cstf2t",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Cstf2t")
+
+
+```
+
+
+#Pdcd4 - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Pdcd4")
+
+#deuBinPlot(sePND8_exon,"Pdcd4", type="condition", colour="condition", condition = "Group")
+
+deuBinPlot(sePND8_exon,"Pdcd4", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Pdcd4",type="condition",colour="condition", condition = "Group") + 
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Pdcd4")
+
+
+```
+
+
+#Fam214a - UTR
+```{r}
+#Gene profiler
+deuBinPlot(sePND8_exon,"Fam214a")
+
+#deuBinPlot(sePND8_exon,"Fam214a", type="condition", colour= "Group", condition = c("Control","MSUS"))
+
+deuBinPlot(sePND8_exon,"Fam214a", type="sample", colour="Group", condition = c("Control","MSUS"))
+
+#deuBinPlot(sePND8_exon,"Fam214a",type="condition",colour="Group", condition = c("Control","MSUS")) +
+ # guides(colour = guide_legend(override.aes = list(size = 3))) +
+  #scale_colour_manual(values=c(CTRL="darkblue", LTP="red"))
+
+#Heatmap
+
+geneBinHeatmap(sePND8_exon, "Fam214a")
+
+
 ```
 

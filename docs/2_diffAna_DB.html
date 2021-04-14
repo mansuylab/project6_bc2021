@@ -396,16 +396,27 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
+<<<<<<< HEAD
 <a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treef813151dbd1c13cc4b7ff1bba8abcd30b79406dftargetblankf813151a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/f813151dbd1c13cc4b7ff1bba8abcd30b79406df" target="_blank">f813151</a> </a>
 </p>
 </div>
 <div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treef813151dbd1c13cc4b7ff1bba8abcd30b79406dftargetblankf813151a" class="panel-collapse collapse">
+=======
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeb9dd2a6b8b7f28984281347fa8d9061fc750fcectargetblankb9dd2a6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/b9dd2a6b8b7f28984281347fa8d9061fc750fcec" target="_blank">b9dd2a6</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeb9dd2a6b8b7f28984281347fa8d9061fc750fcectargetblankb9dd2a6a" class="panel-collapse collapse">
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
+<<<<<<< HEAD
 The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/f813151dbd1c13cc4b7ff1bba8abcd30b79406df" target="_blank">f813151</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+=======
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/b9dd2a6b8b7f28984281347fa8d9061fc750fcec" target="_blank">b9dd2a6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -460,6 +471,26 @@ Message
 Rmd
 </td>
 <td>
+<<<<<<< HEAD
+=======
+<a href="https://github.com/mansuylab/project6_bc2021/blob/b9dd2a6b8b7f28984281347fa8d9061fc750fcec/analysis/2_diffAna_DB.Rmd" target="_blank">b9dd2a6</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+<td>
+Added 10 genes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 <a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/analysis/2_diffAna_DB.Rmd" target="_blank">01f38a5</a>
 </td>
 <td>
@@ -496,75 +527,10 @@ rename and HTML files
 </div>
 </div>
 </div>
-<div id="differential-analysis" class="section level2">
-<h2>Differential analysis</h2>
 <pre class="r"><code>library(diffUTR)
 library(SummarizedExperiment)</code></pre>
-<pre><code>Lade nötiges Paket: MatrixGenerics</code></pre>
-<pre><code>Lade nötiges Paket: matrixStats</code></pre>
-<pre><code>
-Attache Paket: &#39;MatrixGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-    colWeightedMeans, colWeightedMedians, colWeightedSds,
-    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-    rowWeightedSds, rowWeightedVars</code></pre>
-<pre><code>Lade nötiges Paket: GenomicRanges</code></pre>
-<pre><code>Lade nötiges Paket: stats4</code></pre>
-<pre><code>Lade nötiges Paket: BiocGenerics</code></pre>
-<pre><code>Lade nötiges Paket: parallel</code></pre>
-<pre><code>
-Attache Paket: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:parallel&#39;:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which.max, which.min</code></pre>
-<pre><code>Lade nötiges Paket: S4Vectors</code></pre>
-<pre><code>
-Attache Paket: &#39;S4Vectors&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:base&#39;:
-
-    expand.grid</code></pre>
-<pre><code>Lade nötiges Paket: IRanges</code></pre>
-<pre><code>Lade nötiges Paket: GenomeInfoDb</code></pre>
-<pre><code>Lade nötiges Paket: Biobase</code></pre>
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre><code>
-Attache Paket: &#39;Biobase&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:MatrixGenerics&#39;:
-
-    rowMedians</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    anyMissing, rowMedians</code></pre>
+<div id="differential-analysis" class="section level2">
+<h2>Differential analysis</h2>
 <pre class="r"><code>counts_bins &lt;- readRDS(&quot;~/Desktop/git/project6_bc2021/data/counts_bins.rds&quot;)
 
 pnw20 &lt;- counts_bins[,colData(counts_bins)$Stage == &quot;PNW20&quot;]

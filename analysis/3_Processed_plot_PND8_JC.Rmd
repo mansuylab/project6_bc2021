@@ -9,7 +9,7 @@ editor_options:
 
 
 #Library
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(diffUTR)
 library(SummarizedExperiment)
 library(GenomicRanges)
