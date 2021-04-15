@@ -11,12 +11,15 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r, message=FALSE, warning=FALSE}
+library(diffUTR)
+library(SummarizedExperiment)
+```
+
+
 ## Differential analysis
 
 ```{r}
-
-library(diffUTR)
-library(SummarizedExperiment)
 
 counts_bins <- readRDS("~/Desktop/git/project6_bc2021/data/counts_bins.rds")
 

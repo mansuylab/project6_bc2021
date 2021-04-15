@@ -287,7 +287,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -296,7 +296,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -305,10 +305,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-03-31
+<strong>Last updated:</strong> 2021-04-11
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 2
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>project6_bc2021/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -324,12 +324,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -384,52 +384,39 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>
-Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
-</p>
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th style="text-align:left;">
-absolute
-</th>
-<th style="text-align:left;">
-relative
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-~/Desktop/git/project6_bc2021/data/counts_bins.rds
-</td>
-<td style="text-align:left;">
-data/counts_bins.rds
-</td>
-</tr>
-</tbody>
-</table>
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeaa1964276a85a72be79064620641d1598251698ftargetblankaa19642a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/aa1964276a85a72be79064620641d1598251698f" target="_blank">aa19642</a> </a>
+<<<<<<< HEAD
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treef813151dbd1c13cc4b7ff1bba8abcd30b79406dftargetblankf813151a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/f813151dbd1c13cc4b7ff1bba8abcd30b79406df" target="_blank">f813151</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeaa1964276a85a72be79064620641d1598251698ftargetblankaa19642a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treef813151dbd1c13cc4b7ff1bba8abcd30b79406dftargetblankf813151a" class="panel-collapse collapse">
+=======
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeb9dd2a6b8b7f28984281347fa8d9061fc750fcectargetblankb9dd2a6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mansuylab/project6_bc2021/tree/b9dd2a6b8b7f28984281347fa8d9061fc750fcec" target="_blank">b9dd2a6</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommansuylabproject6bc2021treeb9dd2a6b8b7f28984281347fa8d9061fc750fcectargetblankb9dd2a6a" class="panel-collapse collapse">
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/aa1964276a85a72be79064620641d1598251698f" target="_blank">aa19642</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+<<<<<<< HEAD
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/f813151dbd1c13cc4b7ff1bba8abcd30b79406df" target="_blank">f813151</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+=======
+The results in this page were generated with repository version <a href="https://github.com/mansuylab/project6_bc2021/tree/b9dd2a6b8b7f28984281347fa8d9061fc750fcec" target="_blank">b9dd2a6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -437,25 +424,10 @@ Note that you need to be careful to ensure that all relevant files for the analy
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
-    Ignored:    .Rapp.history
     Ignored:    .Rhistory
-    Ignored:    .Rproj.user/
-    Ignored:    analysis/.DS_Store
-    Ignored:    data/.DS_Store
-    Ignored:    data/.Rapp.history
+    Ignored:    analysis/.RDataTmp
+    Ignored:    analysis/.Rhistory
     Ignored:    data/counts_bins.rds
-
-Untracked files:
-    Untracked:  analysis/1_PCA_boxplot_HM_DB.Rmd
-    Untracked:  analysis/2_diffAna_DB.Rmd
-    Untracked:  analysis/3_Vol_HM_MA_DB.Rmd
-    Untracked:  analysis/4_vignetteplots_DB.Rmd
-
-Unstaged changes:
-    Deleted:    analysis/1PCA_boxplot_HM.Rmd
-    Deleted:    analysis/2diffAna.Rmd
-    Deleted:    analysis/3Vol_HM_MA.Rmd
-    Deleted:    analysis/4vignetteplots.Rmd
 
 </code></pre>
 <p>
@@ -468,152 +440,111 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/3_Vol_HM_MA_DB.Rmd</code>) and HTML (<code>docs/3_Vol_HM_MA_DB.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<<<<<<< HEAD
+=======
+<a href="https://github.com/mansuylab/project6_bc2021/blob/b9dd2a6b8b7f28984281347fa8d9061fc750fcec/analysis/3_Vol_HM_MA_DB.Rmd" target="_blank">b9dd2a6</a>
+</td>
+<td>
+BuglianiD
+</td>
+<td>
+2021-04-11
+</td>
+<td>
+Added 10 genes
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/analysis/3_Vol_HM_MA_DB.Rmd" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+<td>
+rename and HTML files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mansuylab/project6_bc2021/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/3_Vol_HM_MA_DB.html" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+<td>
+rename and HTML files
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
-<div id="volcano-plot-mod.-heatmap-ma-plot" class="section level2">
-<h2>Volcano plot, mod. Heatmap, MA plot</h2>
-<pre class="r"><code>library(EnhancedVolcano)</code></pre>
-<pre><code>Lade nötiges Paket: ggplot2</code></pre>
-<pre><code>Lade nötiges Paket: ggrepel</code></pre>
-<pre><code>Registered S3 methods overwritten by &#39;ggalt&#39;:
-  method                  from   
-  grid.draw.absoluteGrob  ggplot2
-  grobHeight.absoluteGrob ggplot2
-  grobWidth.absoluteGrob  ggplot2
-  grobX.absoluteGrob      ggplot2
-  grobY.absoluteGrob      ggplot2</code></pre>
-<pre class="r"><code>library(SummarizedExperiment)</code></pre>
-<pre><code>Lade nötiges Paket: MatrixGenerics</code></pre>
-<pre><code>Lade nötiges Paket: matrixStats</code></pre>
-<pre><code>
-Attache Paket: &#39;MatrixGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-    colWeightedMeans, colWeightedMedians, colWeightedSds,
-    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-    rowWeightedSds, rowWeightedVars</code></pre>
-<pre><code>Lade nötiges Paket: GenomicRanges</code></pre>
-<pre><code>Lade nötiges Paket: stats4</code></pre>
-<pre><code>Lade nötiges Paket: BiocGenerics</code></pre>
-<pre><code>Lade nötiges Paket: parallel</code></pre>
-<pre><code>
-Attache Paket: &#39;BiocGenerics&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:parallel&#39;:
-
-    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    clusterExport, clusterMap, parApply, parCapply, parLapply,
-    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    IQR, mad, sd, var, xtabs</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-    union, unique, unsplit, which.max, which.min</code></pre>
-<pre><code>Lade nötiges Paket: S4Vectors</code></pre>
-<pre><code>
-Attache Paket: &#39;S4Vectors&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:base&#39;:
-
-    expand.grid</code></pre>
-<pre><code>Lade nötiges Paket: IRanges</code></pre>
-<pre><code>Lade nötiges Paket: GenomeInfoDb</code></pre>
-<pre><code>Lade nötiges Paket: Biobase</code></pre>
-<pre><code>Welcome to Bioconductor
-
-    Vignettes contain introductory material; view with
-    &#39;browseVignettes()&#39;. To cite Bioconductor, see
-    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.</code></pre>
-<pre><code>
-Attache Paket: &#39;Biobase&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:MatrixGenerics&#39;:
-
-    rowMedians</code></pre>
-<pre><code>The following objects are masked from &#39;package:matrixStats&#39;:
-
-    anyMissing, rowMedians</code></pre>
-<pre class="r"><code>library(workflowr)
-library(gridExtra)</code></pre>
-<pre><code>
-Attache Paket: &#39;gridExtra&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:Biobase&#39;:
-
-    combine</code></pre>
-<pre><code>The following object is masked from &#39;package:BiocGenerics&#39;:
-
-    combine</code></pre>
-<pre class="r"><code>library(diffUTR)
+<pre class="r"><code>library(EnhancedVolcano)
+library(SummarizedExperiment)
+library(workflowr)
+library(gridExtra)
+library(diffUTR)
 library(ggplot2)
-library(factoextra)</code></pre>
-<pre><code>Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
-<pre class="r"><code>library(limma)</code></pre>
-<pre><code>
-Attache Paket: &#39;limma&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:BiocGenerics&#39;:
-
-    plotMA</code></pre>
-<pre class="r"><code>library(edgeR)
+library(factoextra)
+library(limma)
+library(edgeR)
 library(reshape2)
-library(dplyr)</code></pre>
-<pre><code>
-Attache Paket: &#39;dplyr&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:gridExtra&#39;:
-
-    combine</code></pre>
-<pre><code>The following object is masked from &#39;package:Biobase&#39;:
-
-    combine</code></pre>
-<pre><code>The following objects are masked from &#39;package:GenomicRanges&#39;:
-
-    intersect, setdiff, union</code></pre>
-<pre><code>The following object is masked from &#39;package:GenomeInfoDb&#39;:
-
-    intersect</code></pre>
-<pre><code>The following objects are masked from &#39;package:IRanges&#39;:
-
-    collapse, desc, intersect, setdiff, slice, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:S4Vectors&#39;:
-
-    first, intersect, rename, setdiff, setequal, union</code></pre>
-<pre><code>The following objects are masked from &#39;package:BiocGenerics&#39;:
-
-    combine, intersect, setdiff, union</code></pre>
-<pre><code>The following object is masked from &#39;package:matrixStats&#39;:
-
-    count</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(rcartocolor)
+library(dplyr)
+library(rcartocolor)
 library(SEtools)
 library(ggrepel)
-library(ggpubr)
-
-counts_bins &lt;- readRDS(&quot;~/Desktop/git/project6_bc2021/data/counts_bins.rds&quot;)
+library(ggpubr)</code></pre>
+<div id="volcano-plot-mod.-heatmap-ma-plot" class="section level2">
+<h2>Volcano plot, mod. Heatmap, MA plot</h2>
+<pre class="r"><code>counts_bins &lt;- readRDS(&quot;~/Desktop/git/project6_bc2021/data/counts_bins.rds&quot;)
 
 datcol &lt;- data.frame(obj = rep(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), 5), val = 1:15)
 cols &lt;- rcartocolor::carto_pal(n = 11, name = &quot;Safe&quot;)
@@ -654,7 +585,48 @@ vol.plot &lt;- EnhancedVolcano(rse.frame,
                 col = c(&quot;black&quot;,cols))
 
 vol.plot</code></pre>
+<<<<<<< HEAD
 <p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-1">
+Past versions of unnamed-chunk-1-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-1.png" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+=======
+<p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 <pre class="r"><code>##Heatmap
 
 sub1 &lt;- rse[rowRanges(rse)$bin.FDR&lt;0.2,]
@@ -662,7 +634,48 @@ sub1 &lt;- rse[rowRanges(rse)$bin.FDR&lt;0.2,]
 heat.plot &lt;- sechm(sub1, genes = rownames(sub1), hmcols=hmcols, do.scale = TRUE, gaps_at = &quot;Group&quot;, show_rownames = FALSE)</code></pre>
 <pre><code>Using assay logcpm</code></pre>
 <pre class="r"><code>heat.plot</code></pre>
+<<<<<<< HEAD
 <p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-2">
+Past versions of unnamed-chunk-1-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-2.png" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+=======
+<p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 <pre class="r"><code>##MA plot
 
 x &lt;- data.frame(&#39;baseMean&#39;=rse.frame$meanLogCPM, &#39;log2FoldChange&#39;=rse.frame$coefficient, &#39;padj&#39;=rse.frame$bin.FDR)
@@ -678,13 +691,134 @@ MA.plot &lt;- ggmaplot(x, fdr = 0.05,
          palette = cols)
 
 MA.plot</code></pre>
+<<<<<<< HEAD
 <p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-3">
+Past versions of unnamed-chunk-1-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-3.png" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>##Histogram
 
 histo &lt;- hist(rowRanges(rse)$bin.p.value)</code></pre>
 <p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-4">
+Past versions of unnamed-chunk-1-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-4.png" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>histo.exon &lt;- hist(rowRanges(rse.exon)$bin.p.value)</code></pre>
 <p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-1-5">
+Past versions of unnamed-chunk-1-5.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-1-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mansuylab/project6_bc2021/blob/01f38a505eadb3dc43423e6f0610c2a10210195f/docs/figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-1-5.png" target="_blank">01f38a5</a>
+</td>
+<td>
+David Bugliani
+</td>
+<td>
+2021-03-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+=======
+<p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>##Histogram
+
+histo &lt;- hist(rowRanges(rse)$bin.p.value)</code></pre>
+<p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-2-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>histo.exon &lt;- hist(rowRanges(rse.exon)$bin.p.value)</code></pre>
+<p><img src="figure/3_Vol_HM_MA_DB.Rmd/unnamed-chunk-2-5.png" width="672" style="display: block; margin: auto;" /></p>
+>>>>>>> 03f74f1ff8fc4994712073d00feedaf0a08080df
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -727,7 +861,7 @@ loaded via a namespace (and not attached):
   [4] AnnotationDbi_1.52.0     grid_4.0.4               TSP_1.1-10              
   [7] BiocParallel_1.24.1      Rtsne_0.15               munsell_0.5.0           
  [10] codetools_0.2-18         statmod_1.4.35           withr_2.4.1             
- [13] colorspace_2.0-0         ggalt_0.4.0              highr_0.8               
+ [13] colorspace_2.0-0         highr_0.8                ggalt_0.4.0             
  [16] knitr_1.31               ggsignif_0.6.1           Rttf2pt1_1.3.8          
  [19] Rsubread_2.4.3           labeling_0.4.2           git2r_0.28.0            
  [22] GenomeInfoDbData_1.2.4   hwriter_1.3.2            farver_2.1.0            
@@ -750,31 +884,31 @@ loaded via a namespace (and not attached):
  [73] RCurl_1.98-1.3           prettyunits_1.1.1        openssl_1.4.3           
  [76] GetoptLong_1.0.5         haven_2.3.1              cluster_2.1.1           
  [79] fs_1.5.0                 magrittr_2.0.1           data.table_1.14.0       
- [82] openxlsx_4.2.3           circlize_0.4.12          ProtGenerics_1.22.0     
- [85] randomcoloR_1.1.0.1      hms_1.0.0                evaluate_0.14           
- [88] xtable_1.8-4             XML_3.99-0.6             rio_0.5.26              
- [91] readxl_1.3.1             shape_1.4.5              compiler_4.0.4          
- [94] biomaRt_2.46.3           tibble_3.1.0             maps_3.3.0              
- [97] KernSmooth_2.23-18       V8_3.4.0                 crayon_1.4.1            
-[100] htmltools_0.5.1.1        mgcv_1.8-34              later_1.1.0.1           
-[103] tidyr_1.1.3              geneplotter_1.68.0       DBI_1.1.1               
-[106] dbplyr_2.1.0             proj4_1.0-10.1           ComplexHeatmap_2.6.2    
-[109] MASS_7.3-53.1            rappdirs_0.3.3           car_3.0-10              
-[112] Matrix_1.3-2             forcats_0.5.1            pkgconfig_2.0.3         
-[115] GenomicAlignments_1.26.0 registry_0.5-1           foreign_0.8-81          
-[118] xml2_1.3.2               foreach_1.5.1            annotate_1.68.0         
-[121] vipor_0.4.5              bslib_0.2.4              XVector_0.30.0          
-[124] DEXSeq_1.36.0            stringr_1.4.0            digest_0.6.27           
-[127] Biostrings_2.58.0        cellranger_1.1.0         rmarkdown_2.7           
-[130] curl_4.3                 Rsamtools_2.6.0          rjson_0.2.20            
-[133] lifecycle_1.0.0          nlme_3.1-152             jsonlite_1.7.2          
-[136] carData_3.0-4            askpass_1.1              fansi_0.4.2             
-[139] pillar_1.5.1             lattice_0.20-41          ggrastr_0.2.3           
-[142] fastmap_1.1.0            httr_1.4.2               survival_3.2-10         
-[145] glue_1.4.2               zip_2.1.1                png_0.1-7               
-[148] iterators_1.0.13         bit_4.0.4                stringi_1.5.3           
-[151] sass_0.3.1               blob_1.2.1               DESeq2_1.30.1           
-[154] memoise_2.0.0           </code></pre>
+ [82] openxlsx_4.2.3           circlize_0.4.12          whisker_0.4             
+ [85] ProtGenerics_1.22.0      randomcoloR_1.1.0.1      hms_1.0.0               
+ [88] evaluate_0.14            xtable_1.8-4             XML_3.99-0.6            
+ [91] rio_0.5.26               readxl_1.3.1             shape_1.4.5             
+ [94] compiler_4.0.4           biomaRt_2.46.3           tibble_3.1.0            
+ [97] maps_3.3.0               KernSmooth_2.23-18       V8_3.4.0                
+[100] crayon_1.4.1             htmltools_0.5.1.1        mgcv_1.8-34             
+[103] later_1.1.0.1            tidyr_1.1.3              geneplotter_1.68.0      
+[106] DBI_1.1.1                dbplyr_2.1.0             proj4_1.0-10.1          
+[109] ComplexHeatmap_2.6.2     MASS_7.3-53.1            rappdirs_0.3.3          
+[112] car_3.0-10               Matrix_1.3-2             forcats_0.5.1           
+[115] pkgconfig_2.0.3          GenomicAlignments_1.26.0 registry_0.5-1          
+[118] foreign_0.8-81           xml2_1.3.2               foreach_1.5.1           
+[121] annotate_1.68.0          vipor_0.4.5              bslib_0.2.4             
+[124] XVector_0.30.0           DEXSeq_1.36.0            stringr_1.4.0           
+[127] digest_0.6.27            Biostrings_2.58.0        cellranger_1.1.0        
+[130] rmarkdown_2.7            curl_4.3                 Rsamtools_2.6.0         
+[133] rjson_0.2.20             lifecycle_1.0.0          nlme_3.1-152            
+[136] jsonlite_1.7.2           carData_3.0-4            askpass_1.1             
+[139] fansi_0.4.2              pillar_1.5.1             lattice_0.20-41         
+[142] ggrastr_0.2.3            fastmap_1.1.0            httr_1.4.2              
+[145] survival_3.2-10          glue_1.4.2               zip_2.1.1               
+[148] png_0.1-7                iterators_1.0.13         bit_4.0.4               
+[151] stringi_1.5.3            sass_0.3.1               blob_1.2.1              
+[154] DESeq2_1.30.1            memoise_2.0.0           </code></pre>
 </div>
 </div>
 

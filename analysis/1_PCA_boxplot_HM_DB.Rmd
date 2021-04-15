@@ -12,10 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-## PCA Plots
 
-```{r}
-
+```{r, message=FALSE,warning=FALSE}
 library('patchwork')
 library(workflowr)
 library(gridExtra)
@@ -28,6 +26,12 @@ library(reshape2)
 library(dplyr)
 library(rcartocolor)
 library(SEtools)
+```
+
+
+## PCA Plots
+
+```{r}
 
 ##Colorcoding for colorblind people
 datcol <- data.frame(obj = rep(c("a", "b", "c"), 5), val = 1:15)
