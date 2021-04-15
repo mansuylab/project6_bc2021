@@ -22,6 +22,7 @@ library(ensembldb)
 library(ggpubr)
 library(SEtools)
 library(EnhancedVolcano)
+library(rcartocolor)
 ```
 
 #Working directories and data
@@ -39,9 +40,12 @@ se_apa <- readRDS("C:/Users/chabb/Desktop/ETHZ/3. Jahr/6. Semester/Blockkurs/2. 
 
 cd2 <- data.frame(colData(se_apa))
 pnd8_2 <- cd2$Stage == "PND8"
-sePND8UTR <- se_apa[,pnd8_2]
-sePND8_utr <- diffSpliceWrapper(sePND8UTR, design = ~Batch+Group, 
+sePND8_utr <- se_apa[,pnd8_2]
+sePND8_utr <- diffSpliceWrapper(sePND8_utr, design = ~Batch+Group, 
                 excludeTypes = c("CDS","non-coding"))
+
+cols <- carto_pal(n = 9, "Safe")
+
 
 ```
 
@@ -60,16 +64,28 @@ hist.plot_utr <- hist(rowRanges(sePND8_utr)$bin.p.value)
 maData <- data.frame(baseMean = rowData(sePND8_exon)$meanLogCPM, log2FoldChange = rowData(sePND8_exon)$coefficient, padj = rowData(sePND8_exon)$bin.FDR)
 
 #plot
-ggmaplot(maData, 
-   fdr = 0.05, fc = 2, size = 0.4,
-    xlab = "Log2 mean expression",
-    ylab = "Log2 fold change",
-    top = 3,
-    font.label = c("bold", 11), label.rectangle = TRUE,
-    font.legend = "bold",
-    font.main = "bold"
+#ggmaplot(maData, 
+ #  fdr = 0.05, fc = 2, size = 0.4,
+  #  xlab = "Log2 mean expression",
+   # ylab = "Log2 fold change",
+  #  top = 3,
+   # font.label = c("bold", 11), label.rectangle = TRUE,
+    #font.legend = "bold",
+    #font.main = "bold"
   
-)
+#)
+
+rse.frame1 <- data.frame(rowRanges(sePND8_exon))
+MA.plot.exon <- ggmaplot(maData, fdr = 0.05, 
+         fc=1.5, size= 0.4,
+         max.overlaps=1000,
+         main = 'MA plot PND8',
+         label.rectangle = TRUE,
+         alpha = 5,
+         top=5,
+         genenames = rse.frame1$gene_name, 
+         palette = cols)
+MA.plot.exon
 
 #UTR
 
@@ -77,17 +93,28 @@ ggmaplot(maData,
 maData_utr <- data.frame(baseMean = rowData(sePND8_utr)$meanLogCPM, log2FoldChange = rowData(sePND8_utr)$coefficient, padj = rowData(sePND8_utr)$bin.FDR)
 
 #plot
-ggmaplot(maData_utr, 
-   fdr = 0.05, fc = 2, size = 0.4,
-    xlab = "Log2 mean expression",
-    ylab = "Log2 fold change",
-    top = 3,
-    font.label = c("bold", 11), label.rectangle = TRUE,
-    font.legend = "bold",
-    font.main = "bold"
+#ggmaplot(maData_utr, 
+ #  fdr = 0.05, fc = 2, size = 0.4,
+  #  xlab = "Log2 mean expression",
+   # ylab = "Log2 fold change",
+    #top = 3,
+    #font.label = c("bold", 11), label.rectangle = TRUE,
+    #font.legend = "bold",
+    #font.main = "bold"
   
-)
+#)
 
+rse.frame <- data.frame(rowRanges(sePND8_utr))
+MA.plot.utr <- ggmaplot(maData_utr, fdr = 0.05, 
+         fc=1.5, size= 0.4,
+         max.overlaps=1000,
+         main = 'MA plot PND8',
+         label.rectangle = TRUE,
+         alpha = 5,
+         top=5,
+         genenames = rse.frame$gene_name, 
+         palette = cols)
+MA.plot.utr
 
 ```
 
